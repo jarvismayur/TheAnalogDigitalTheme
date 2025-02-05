@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation on Scroll</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        .hidden_animate {
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+    <div style="height: 100vh; background: lightgray; display: flex; align-items: center; justify-content: center;">
+        <h2>Scroll down to see the animation</h2>
+    </div>
+
+    <div class="hidden_animate animate__animated" data-animation="animate__fadeInUp" 
+         style="height: 200px; background: salmon; display: flex; align-items: center; justify-content: center;">
+        <h1>Animate Me!</h1>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        let el = entry.target;
+                        el.classList.add(el.dataset.animation);
+                        el.style.opacity = 1;
+                        observer.unobserve(el); // Stop observing after animation starts
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll(".hidden_animate").forEach(el => observer.observe(el));
+        });
+    </script>
+
+</body>
+</html>
