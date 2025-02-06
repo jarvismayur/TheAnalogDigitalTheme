@@ -1835,3 +1835,9 @@ function fix_home_page_wp_title($title) {
     return $title;
 }
 add_filter('pre_get_document_title', 'fix_home_page_wp_title');
+
+
+add_filter( 'git_updater_theme_repo', function( $repos ) {
+    $repos['TheAnalogDigitalTheme'] = 'jarvismayur/TheAnalogDigitalTheme';
+    return $repos;
+});
