@@ -1294,7 +1294,7 @@ function tools_covered_shortcode($atts) {
     ], $atts, 'tools_covered');
 
     // Decode tools data
-    $tools = json_decode($atts['tools']);
+    $tools = json_decode($atts['tools'], false);
     
     $heading = esc_html($atts['heading']);
     $caption = esc_html($atts['caption']);
