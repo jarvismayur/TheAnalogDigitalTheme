@@ -1295,10 +1295,7 @@ function tools_covered_shortcode($atts) {
 
     // Decode tools data
     $tools = json_decode($atts['tools'], true);
-    if (!is_array($tools)) {
-        $tools = json_decode($default_tools_json, true); // Fallback to default
-    }
-
+    
     $heading = esc_html($atts['heading']);
     $caption = esc_html($atts['caption']);
 
