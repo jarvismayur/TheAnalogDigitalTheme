@@ -754,7 +754,7 @@ function display_testimonials_shortcode($atts) {
 
         // First Row: Star Rating, Name, Image
         echo '<div class="row">';
-        echo '<div class="col-md-9 col-lg-9 col-sm-9">';
+        echo '<div class="col-md-8 col-lg-8 col-sm-8">';
         echo '<div class="row">';
         echo '<div class="col-12">';
         echo '<div class="star-rating mb-2">';
