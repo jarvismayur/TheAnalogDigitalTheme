@@ -1271,63 +1271,49 @@ add_action('wp_head', 'owl_carousel_styles');
 
 
 function tools_covered_shortcode($atts) {
-    // Define default tools and text
-    $default_tools = [
-        ['image' => 'google-ads.png', 'alt' => 'Google Ads', 'text' => 'Google Ads'],
-        ['image' => 'google-keyword-planner.png', 'alt' => 'Google Keyword Planner', 'text' => 'Google Keyword Planner'],
-        ['image' => 'google-my-business.png', 'alt' => 'Google My Business', 'text' => 'Google My Business'],
-        ['image' => 'youtube.png', 'alt' => 'YouTube', 'text' => 'YouTube'],
-        ['image' => 'facebook-ads.png', 'alt' => 'Facebook Ads', 'text' => 'Facebook Ads'],
-        ['image' => 'meta-business-suite.png', 'alt' => 'Meta Business Suite', 'text' => 'Meta Business Suite'],
-        ['image' => 'chatgpt.png', 'alt' => 'ChatGPT', 'text' => 'ChatGPT'],
-        ['image' => 'linkedin.png', 'alt' => 'LinkedIn', 'text' => 'LinkedIn'],
-        ['image' => 'x-twitter.png', 'alt' => 'X (formerly Twitter)', 'text' => 'X (formerly Twitter)'],
-        ['image' => 'google-analytics.png', 'alt' => 'Google Analytics', 'text' => 'Google Analytics'],
-        ['image' => 'google-tag-manager.png', 'alt' => 'Google Tag Manager', 'text' => 'Google Tag Manager'],
-    ];
-    $heading = 'Tools Covered'; // Default heading
-    $caption = 'Learn More'; // Default action text
+    // Default image data as a serialized string
+    $default_tools_serialized = serialize([
+        ['image' => 'google-ads.png', 'alt' => 'Google Ads'],
+        ['image' => 'google-keyword-planner.png', 'alt' => 'Google Keyword Planner'],
+        ['image' => 'google-my-business.png', 'alt' => 'Google My Business'],
+        ['image' => 'youtube.png', 'alt' => 'YouTube'],
+        ['image' => 'facebook-ads.png', 'alt' => 'Facebook Ads'],
+        ['image' => 'meta-business-suite.png', 'alt' => 'Meta Business Suite'],
+        ['image' => 'chatgpt.png', 'alt' => 'ChatGPT'],
+        ['image' => 'linkedin.png', 'alt' => 'LinkedIn'],
+        ['image' => 'x-twitter.png', 'alt' => 'X (formerly Twitter)'],
+        ['image' => 'google-analytics.png', 'alt' => 'Google Analytics'],
+        ['image' => 'google-tag-manager.png', 'alt' => 'Google Tag Manager'],
+    ]);
+    
+    // Parse shortcode attributes
+    $atts = shortcode_atts([
+        'tools' => $default_tools_serialized, // Serialized data
+        'heading' => 'Tools Covered',
+        'caption' => 'Learn More',
+    ], $atts, 'tools_covered');
+    
+    // Unserialize tools data
+    $tools = unserialize($atts['tools']);
+    if (!is_array($tools)) {
+        $tools = unserialize($default_tools_serialized); // Fallback to default
+    }
 
-    // Parse attributes to allow customization
-    $atts = shortcode_atts(
-        ['tools' => json_encode($default_tools),
-            'heading' => $heading,
-            'caption' => $caption,    
-    ], // JSON-encoded array for dynamic updates
-        $atts,
-        'tools_covered'
-    );
-
-    // Decode tools from the provided attribute
-    $tools = json_decode($atts['tools'], true);
     $heading = esc_html($atts['heading']);
     $caption = esc_html($atts['caption']);
-    if (!$tools || !is_array($tools)) {
-        $tools = $default_tools; // Fall back to default if JSON is invalid
-    }
 
     ob_start(); // Start output buffering
     ?>
     <div class="section-container">
-
         <p class="text-large-normal"><em><?php echo $caption; ?></em></p>
         <h2 class="h2"><?php echo $heading; ?></h2>
         <div class="row text-center align-items-center">
-            <?php
-            $columns_per_row = 6; // Number of columns per row
-            foreach ($tools as $index => $tool) {
-                // Start a new row if necessary
-                if ($index % $columns_per_row == 0 && $index !== 0) {
-                    echo '</div><div class="row text-center align-items-center">';
-                }
-                ?>
-                <div class="col-6 col-md-2  mb-3">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/<?php echo esc_attr($tool['image']); ?>" 
+            <?php foreach ($tools as $index => $tool) : ?>
+                <div class="col-6 col-md-2 mb-3">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/<?php echo esc_attr($tool['image']); ?>"
                          alt="<?php echo esc_attr($tool['alt']); ?>" class="img-fluid tools-logo" />
                 </div>
-                <?php
-            }
-            ?>
+            <?php endforeach; ?>
         </div>
     </div>
     <style>
@@ -1345,9 +1331,10 @@ function tools_covered_shortcode($atts) {
         }
     </style>
     <?php
-    return ob_get_clean(); // Return the buffered output
+    return ob_get_clean();
 }
 add_shortcode('tools_covered', 'tools_covered_shortcode');
+
 
 
 
