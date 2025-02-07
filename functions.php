@@ -1519,7 +1519,7 @@ function course_admission_form_shortcode($atts) {
             
             <div class="form-group">
                 <label for="course">Select Course:</label>
-                <select name="course" id="course" class="form-control" required>
+                <select name="course" id="course" class="form-control" required disabled>
                     <?php foreach ($courses as $course): ?>
                         <option value="<?php echo esc_attr(trim($course)); ?>"><?php echo esc_html(trim($course)); ?></option>
                     <?php endforeach; ?>
