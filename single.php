@@ -79,9 +79,9 @@
 </div>
 
 
-                <div class="row mt-5 d-none d-lg-block">
+                <div class="row mt-5 ">
                     <div class="col-3">
-                        <div class="table-of-contents my-4 p-3  border rounded " id="toc-list">
+                        <div class="table-of-contents my-4 p-3  border rounded d-none d-lg-block " id="toc-list">
                                 <h2 class="h2">Table of Contents</h2>
                                 <?php
                                 $content = get_the_content();
