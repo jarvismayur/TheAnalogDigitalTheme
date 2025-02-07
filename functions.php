@@ -835,7 +835,7 @@ function custom_contact_form() {
         <textarea id="message" name="message" class="form-control" rows="4" required></textarea>
     </div>
     <div class="form-group">
-        <button type="submit" name="submit_contact_form" class="button primary">Submit</button>
+        <button type="submit" name="submit_contact_form" class="button primary mt-2">Submit</button>
     </div>
     <input type="hidden" name="action" value="handle_contact_form">
 </form>
