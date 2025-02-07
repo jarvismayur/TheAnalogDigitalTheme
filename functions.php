@@ -1277,7 +1277,7 @@ function tools_covered_shortcode($atts) {
 
     // Parse shortcode attributes
     $atts = shortcode_atts([
-        'tools' => $default_tools, // JSON-encoded data
+        'tools' => $default_tools, 
         'heading' => 'Tools Covered',
         'caption' => 'Learn More',
     ], $atts, 'tools_covered');
@@ -1295,8 +1295,8 @@ function tools_covered_shortcode($atts) {
         <div class="row text-center align-items-center">
             <?php foreach ($tools as $tool) : ?>
                 <div class="col-6 col-md-2 mb-3">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/<?php echo esc_attr(trim($image)); ?>"
-                         alt="<?php echo esc_attr($tool['alt']); ?>" class="img-fluid tools-logo" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/<?php echo esc_attr(trim($tool)); ?>"
+                         alt="" class="img-fluid tools-logo p-2" />
                 </div>
             <?php endforeach; ?>
         </div>
