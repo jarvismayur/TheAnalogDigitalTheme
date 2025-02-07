@@ -1285,15 +1285,18 @@ function tools_covered_shortcode($atts) {
         ['image' => 'google-analytics.png', 'alt' => 'Google Analytics', 'text' => 'Google Analytics'],
         ['image' => 'google-tag-manager.png', 'alt' => 'Google Tag Manager', 'text' => 'Google Tag Manager'],
     ];
+
+    // Corrected variable assignment
     $heading = 'Tools Covered';
     $caption = 'Tools Covered in this Course';
 
     // Parse attributes to allow customization
     $atts = shortcode_atts(
-        ['tools' => json_encode($default_tools),
-        'heading' => $heading,
-        'caption' => $caption,
-        ], // JSON-encoded array for dynamic updates
+        [
+            'tools' => json_encode($default_tools), // JSON-encoded array for dynamic updates
+            'heading' => $heading,
+            'caption' => $caption,
+        ],
         $atts,
         'tools_covered'
     );
@@ -1328,13 +1331,13 @@ function tools_covered_shortcode($atts) {
         </div>
     </div>
     <style>
-        .custom-list img {
+        .section-container img {
             transition: transform 0.3s ease;
         }
-        .custom-list img:hover {
+        .section-container img:hover {
             transform: scale(1.1);
         }
-        .custom-list p {
+        .section-container p {
             margin-top: 10px;
             font-weight: 500;
             font-size: 14px;
@@ -1345,6 +1348,7 @@ function tools_covered_shortcode($atts) {
     return ob_get_clean(); // Return the buffered output
 }
 add_shortcode('tools_covered', 'tools_covered_shortcode');
+
 
 
 
