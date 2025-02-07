@@ -1285,10 +1285,15 @@ function tools_covered_shortcode($atts) {
         ['image' => 'google-analytics.png', 'alt' => 'Google Analytics', 'text' => 'Google Analytics'],
         ['image' => 'google-tag-manager.png', 'alt' => 'Google Tag Manager', 'text' => 'Google Tag Manager'],
     ];
+    $heading = 'Tools Covered'; // Default heading
+    $caption = 'Learn More'; // Default action text
 
     // Parse attributes to allow customization
     $atts = shortcode_atts(
-        ['tools' => json_encode($default_tools)], // JSON-encoded array for dynamic updates
+        ['tools' => json_encode($default_tools),
+            'heading' => $heading,
+            'action' => $caption,    
+    ], // JSON-encoded array for dynamic updates
         $atts,
         'tools_covered'
     );
