@@ -1437,14 +1437,12 @@ function companies_hiring_shortcode($atts) {
     ob_start();
     ?>
     <div class="companies-hiring">
-        <div class="row">
-            <div class="col-6">
-                <h3><?php echo esc_html($atts['heading']); ?></h3>
-            </div>
-            <div class="col-6 text-end">
-                <p><?php echo esc_html($atts['description']); ?></p>
-            </div>
-        </div>
+                <p class="text-large-normal"><em><?php echo esc_html($atts['description']); ?></em></p>
+                <h2 class="h2"><?php echo esc_html($atts['heading']); ?></h2>
+        
+                
+         
+        
         <div class="row">
             <?php 
             // Loop to display up to 6 images from the shortcode attributes
@@ -1452,7 +1450,7 @@ function companies_hiring_shortcode($atts) {
                 $image_url = $atts['image' . $i];
                 if ($image_url) {
                     ?>
-                    <div class="col-lg-2 col-6">
+                    <div class="col-lg-2 col-6 m-1">
                         <img src="<?php echo esc_url($image_url); ?>" alt="Company Logo <?php echo $i; ?>" class="company-logo" />
                     </div>
                     <?php
