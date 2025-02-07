@@ -1286,25 +1286,15 @@ function tools_covered_shortcode($atts) {
         ['image' => 'google-tag-manager.png', 'alt' => 'Google Tag Manager', 'text' => 'Google Tag Manager'],
     ];
 
-    // Corrected variable assignment
-    $heading = 'Tools Covered';
-    $caption = 'Tools Covered in this Course';
-
     // Parse attributes to allow customization
     $atts = shortcode_atts(
-        [
-            'tools' => json_encode($default_tools), // JSON-encoded array for dynamic updates
-            'heading' => $heading,
-            'caption' => $caption,
-        ],
+        ['tools' => json_encode($default_tools)], // JSON-encoded array for dynamic updates
         $atts,
         'tools_covered'
     );
 
     // Decode tools from the provided attribute
     $tools = json_decode($atts['tools'], true);
-    $heading = esc_html($atts['heading']);
-    $caption = esc_html($atts['caption']);
     if (!$tools || !is_array($tools)) {
         $tools = $default_tools; // Fall back to default if JSON is invalid
     }
@@ -1312,8 +1302,7 @@ function tools_covered_shortcode($atts) {
     ob_start(); // Start output buffering
     ?>
     <div class="section-container">
-        <p class="text-large-normal"><em><?php echo $caption; ?></em></p>
-        <h2 class="h2"><?php echo $heading; ?></h2>
+        <h2 class="h2">Tools Covered</h2>
         <div class="row text-center align-items-center">
             <?php
             $columns_per_row = 6; // Number of columns per row
@@ -1333,13 +1322,13 @@ function tools_covered_shortcode($atts) {
         </div>
     </div>
     <style>
-        .section-container img {
+        .custom-list img {
             transition: transform 0.3s ease;
         }
-        .section-container img:hover {
+        .custom-list img:hover {
             transform: scale(1.1);
         }
-        .section-container p {
+        .custom-list p {
             margin-top: 10px;
             font-weight: 500;
             font-size: 14px;
@@ -1350,7 +1339,6 @@ function tools_covered_shortcode($atts) {
     return ob_get_clean(); // Return the buffered output
 }
 add_shortcode('tools_covered', 'tools_covered_shortcode');
-
 
 
 
