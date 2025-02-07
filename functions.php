@@ -1365,8 +1365,8 @@ function profile_card_shortcode($atts) {
             'linkedin' => '#',
             'youtube' => '#',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, sint amet ducimus ex corrupti, recusandae sit consequatur perspiciatis obcaecati similique nemo nihil corporis sed quis itaque? Ducimus repellat beatae magnam?',
-            'heading' => 'Meet the Team'
-            'caption' => 'Learn More'
+            'heading' => 'Meet the Team',
+            'caption' => 'Learn More',
         ),
         $atts,
         'profile_card'
@@ -1375,6 +1375,7 @@ function profile_card_shortcode($atts) {
     // Create the HTML content
     ob_start();
     ?>
+    <div class="section-container">
     <p class="text-large-normal"><?php echo esc_html($atts['caption']); ?></p>
     <h2 class="h2"><?php echo esc_html($atts['heading']); ?></h2>
     <div class="row">
@@ -1409,6 +1410,7 @@ function profile_card_shortcode($atts) {
                 <?php echo esc_html($atts['description']); ?>
             </p>
         </div>
+    </div>
     </div>
     <?php
     return ob_get_clean();
