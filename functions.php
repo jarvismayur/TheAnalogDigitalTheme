@@ -754,7 +754,7 @@ function display_testimonials_shortcode($atts) {
 
         // First Row: Star Rating, Name, Image
         echo '<div class="row">';
-        echo '<div class="col-md-9">';
+        echo '<div class="col-md-9 col-lg-9 col-sm-9">';
         echo '<div class="row">';
         echo '<div class="col-12">';
         echo '<div class="star-rating mb-2">';
@@ -777,7 +777,7 @@ function display_testimonials_shortcode($atts) {
         echo '</div>'; // Close col-md-9
 
         // Display image
-        echo '<div class="col-md-3 text-center">';
+        echo '<div class="col-md-3 col-lg-3 col-sm-3 text-center">';
         $image = !empty($testimonial->image) ? esc_url($testimonial->image) : 'https://via.placeholder.com/150';
         echo '<img src="' . $image . '" class="circular-image"   alt="' . esc_html($testimonial->name) . '">';
         echo '</div>'; // Close col-md-3
