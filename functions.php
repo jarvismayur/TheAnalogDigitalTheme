@@ -1373,35 +1373,35 @@ function profile_card_shortcode($atts) {
     // Create the HTML content
     ob_start();
     ?>
-    <div class="row">
-        <div class="col-3">
-            <img src="<?php echo esc_url($atts['image']); ?>"  class="trainer-img" alt="">
+    <div class="row align-items-center p-3 border rounded shadow-sm">
+        <div class="col-md-3 col-12 text-center mb-3 mb-md-0">
+            <img src="<?php echo esc_url($atts['image']); ?>" class="img-fluid rounded-circle" alt="Profile Image">
         </div>
-        <div class="col-9">
-            <div class="row">
-                <div class="col-6">
-                    <h2 class="h2"><?php echo esc_html($atts['name']); ?></h2>
-                    <p class="text-large-normal"><?php echo esc_html($atts['position']); ?></p>
+        <div class="col-md-9 col-12">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <h2 class="h5 mb-1"><?php echo esc_html($atts['name']); ?></h2>
+                    <p class="text-muted mb-2"><?php echo esc_html($atts['position']); ?></p>
                 </div>
-                <div class="col-6 text-end">
+                <div class="col-md-6 text-center text-md-end">
                     <?php if (!empty($atts['facebook'])): ?>
-                        <a href="<?php echo esc_url($atts['facebook']); ?>" class="me-3"><i class="bi bi-facebook text-dark"></i></a>
+                        <a href="<?php echo esc_url($atts['facebook']); ?>" class="me-2"><i class="bi bi-facebook text-primary"></i></a>
                     <?php endif; ?>
                     <?php if (!empty($atts['twitter'])): ?>
-                        <a href="<?php echo esc_url($atts['twitter']); ?>" class="me-3"><i class="bi bi-twitter text-dark"></i></a>
+                        <a href="<?php echo esc_url($atts['twitter']); ?>" class="me-2"><i class="bi bi-twitter text-info"></i></a>
                     <?php endif; ?>
                     <?php if (!empty($atts['instagram'])): ?>
-                        <a href="<?php echo esc_url($atts['instagram']); ?>" class="me-3"><i class="bi bi-instagram text-dark"></i></a>
+                        <a href="<?php echo esc_url($atts['instagram']); ?>" class="me-2"><i class="bi bi-instagram text-danger"></i></a>
                     <?php endif; ?>
                     <?php if (!empty($atts['linkedin'])): ?>
-                        <a href="<?php echo esc_url($atts['linkedin']); ?>" class="me-3"><i class="bi bi-linkedin text-dark"></i></a>
+                        <a href="<?php echo esc_url($atts['linkedin']); ?>" class="me-2"><i class="bi bi-linkedin text-primary"></i></a>
                     <?php endif; ?>
                     <?php if (!empty($atts['youtube'])): ?>
-                        <a href="<?php echo esc_url($atts['youtube']); ?>"><i class="bi bi-youtube text-dark"></i></a>
+                        <a href="<?php echo esc_url($atts['youtube']); }" class="me-2"><i class="bi bi-youtube text-danger"></i></a>
                     <?php endif; ?>
                 </div>
             </div>
-            <p class="text-large-normal mt-4">
+            <p class="text-muted mt-3 text-center text-md-start">
                 <?php echo esc_html($atts['description']); ?>
             </p>
         </div>
@@ -1412,6 +1412,7 @@ function profile_card_shortcode($atts) {
 
 // Register the shortcode
 add_shortcode('profile_card', 'profile_card_shortcode');
+
 
 
 function companies_hiring_shortcode($atts) {
