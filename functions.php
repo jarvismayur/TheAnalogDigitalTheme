@@ -1272,7 +1272,7 @@ add_action('wp_head', 'owl_carousel_styles');
 
 function tools_covered_shortcode($atts) {
     // Default image data as a JSON string
-    $default_tools = 'google-ads.png,google-keyword-planner.png,google-my-business.png,youtube.png,facebook-ads.png,meta-business-suite.png,chatgpt.png,linkedin.png,x-twitter.png,google-analytics.png,google-tag-manager.png';
+    $default_tools = 'https://theanalogdigital.in/wp-content/uploads/2025/02/google-ads.png, https://theanalogdigital.in/wp-content/uploads/2025/02/google-keyword-planner.png, https://theanalogdigital.in/wp-content/uploads/2025/02/google-my-business.png, https://theanalogdigital.in/wp-content/uploads/2025/02/youtube.png,facebook-ads.png, https://theanalogdigital.in/wp-content/uploads/2025/02/meta-business-suite.png, https://theanalogdigital.in/wp-content/uploads/2025/02/chatgpt.png, https://theanalogdigital.in/wp-content/uploads/2025/02/linkedin.png, https://theanalogdigital.in/wp-content/uploads/2025/02/x-twitter.png, https://theanalogdigital.in/wp-content/uploads/2025/02/google-analytics.png, https://theanalogdigital.in/wp-content/uploads/2025/02/google-tag-manager.png';
 
 
     // Parse shortcode attributes
