@@ -79,7 +79,7 @@
 </div>
 
 
-                <div class="row mt-5">
+                <div class="row mt-5 d-none d-lg-block">
                     <div class="col-3">
                         <div class="table-of-contents my-4 p-3  border rounded " id="toc-list">
                                 <h2 class="h2">Table of Contents</h2>
