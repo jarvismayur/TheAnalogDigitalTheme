@@ -3,11 +3,11 @@
     // Check if the TOC is enabled for this page
     $enable_toc = get_post_meta(get_the_ID(), '_enable_toc', true); ?>
 <?php if ($enable_toc) : ?>
-    <div class="container mt-5 d-none d-lg-block">
+    <div class="container mt-5 ">
 <?php endif;?>
 <article <?php post_class(); ?>>
     <?php if ($enable_toc) : ?>
-    <header class="mb-5 d-none d-lg-block">
+    <header class="mb-5 ">
         <h1 class="h1 text-center"><?php the_title(); ?></h1>
     </header>
     <?php endif;?>
@@ -15,9 +15,9 @@
     
 
     <?php if ($enable_toc) : ?>
-        <div class="row  d-none d-lg-block">
+        <div class="row  ">
             <div class="col-3">
-                <div class="table-of-contents my-4 p-3 border rounded" id="toc-list">
+                <div class="table-of-contents my-4 p-3 border rounded d-none d-lg-block" id="toc-list">
                     <h2 class="h2">Table of Contents</h2>
                     <?php
                     $content = get_the_content();
