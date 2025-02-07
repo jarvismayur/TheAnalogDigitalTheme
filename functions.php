@@ -1271,8 +1271,8 @@ add_action('wp_head', 'owl_carousel_styles');
 
 
 function tools_covered_shortcode($atts) {
-    // Default image data as a serialized string
-    $default_tools_serialized = serialize([
+    // Default image data as a JSON string
+    $default_tools_json = json_encode([
         ['image' => 'google-ads.png', 'alt' => 'Google Ads'],
         ['image' => 'google-keyword-planner.png', 'alt' => 'Google Keyword Planner'],
         ['image' => 'google-my-business.png', 'alt' => 'Google My Business'],
@@ -1285,18 +1285,18 @@ function tools_covered_shortcode($atts) {
         ['image' => 'google-analytics.png', 'alt' => 'Google Analytics'],
         ['image' => 'google-tag-manager.png', 'alt' => 'Google Tag Manager'],
     ]);
-    
+
     // Parse shortcode attributes
     $atts = shortcode_atts([
-        'tools' => $default_tools_serialized, // Serialized data
+        'tools' => $default_tools_json, // JSON-encoded data
         'heading' => 'Tools Covered',
         'caption' => 'Learn More',
     ], $atts, 'tools_covered');
-    
-    // Unserialize tools data
-    $tools = unserialize($atts['tools']);
+
+    // Decode tools data
+    $tools = json_decode($atts['tools'], true);
     if (!is_array($tools)) {
-        $tools = unserialize($default_tools_serialized); // Fallback to default
+        $tools = json_decode($default_tools_json, true); // Fallback to default
     }
 
     $heading = esc_html($atts['heading']);
@@ -1308,9 +1308,7 @@ function tools_covered_shortcode($atts) {
         <p class="text-large-normal"><em><?php echo $caption; ?></em></p>
         <h2 class="h2"><?php echo $heading; ?></h2>
         <div class="row text-center align-items-center">
-            <?php echo $tools; ?>
-            <?php foreach ($tools as $index => $tool) : ?>
-                <?php echo $tool['image']; ?>
+            <?php foreach ($tools as $tool) : ?>
                 <div class="col-6 col-md-2 mb-3">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/<?php echo esc_attr($tool['image']); ?>"
                          alt="<?php echo esc_attr($tool['alt']); ?>" class="img-fluid tools-logo" />
@@ -1336,7 +1334,6 @@ function tools_covered_shortcode($atts) {
     return ob_get_clean();
 }
 add_shortcode('tools_covered', 'tools_covered_shortcode');
-
 
 
 
