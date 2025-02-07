@@ -1285,10 +1285,15 @@ function tools_covered_shortcode($atts) {
         ['image' => 'google-analytics.png', 'alt' => 'Google Analytics', 'text' => 'Google Analytics'],
         ['image' => 'google-tag-manager.png', 'alt' => 'Google Tag Manager', 'text' => 'Google Tag Manager'],
     ];
+    $heading => 'Tools Covered';
+    $caption => 'Tools Covered in this Course';
 
     // Parse attributes to allow customization
     $atts = shortcode_atts(
-        ['tools' => json_encode($default_tools)], // JSON-encoded array for dynamic updates
+        ['tools' => json_encode($default_tools),
+        'heading' => $heading,
+        'caption' => $caption,
+        ], // JSON-encoded array for dynamic updates
         $atts,
         'tools_covered'
     );
@@ -1302,7 +1307,8 @@ function tools_covered_shortcode($atts) {
     ob_start(); // Start output buffering
     ?>
     <div class="section-container">
-        <h2 class="h2">Tools Covered</h2>
+        <p class="text-large-normal"><em><?php echo esc_html($atts['caption']); ?></em></p>
+        <h2 class="h2"><?php echo esc_html($atts['heading']); ?></h2>
         <div class="row text-center align-items-center">
             <?php
             $columns_per_row = 6; // Number of columns per row
