@@ -1285,8 +1285,8 @@ function tools_covered_shortcode($atts) {
         ['image' => 'google-analytics.png', 'alt' => 'Google Analytics', 'text' => 'Google Analytics'],
         ['image' => 'google-tag-manager.png', 'alt' => 'Google Tag Manager', 'text' => 'Google Tag Manager'],
     ];
-    $heading => 'Tools Covered';
-    $caption => 'Tools Covered in this Course';
+    $heading = 'Tools Covered';
+    $caption = 'Tools Covered in this Course';
 
     // Parse attributes to allow customization
     $atts = shortcode_atts(
