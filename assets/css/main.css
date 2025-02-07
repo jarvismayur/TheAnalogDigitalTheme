@@ -2107,7 +2107,11 @@ a.active-link {
 		padding-top:15px;
 		padding-bottom:15px;
     }
-	
+    
+    .tools-logo{
+        width: 100px;
+        height: 40px;
+    }
 	
 }
 
@@ -2487,3 +2491,5 @@ a.active-link {
     border-radius: 50%; /* Ensures circular shape */
     object-fit: cover; /* Ensures the image fills the container */
 }
+
+
