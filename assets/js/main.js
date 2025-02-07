@@ -153,3 +153,27 @@ document.addEventListener("DOMContentLoaded", () => {
     
 });
 
+
+document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll(".section-container");
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("animate-in");
+                    entry.target.classList.remove("animate-out");
+                } else {
+                    entry.target.classList.add("animate-out");
+                    entry.target.classList.remove("animate-in");
+                }
+            });
+        },
+        { threshold: 0.2 } // Adjust the threshold as needed
+    );
+
+    sections.forEach((section) => {
+        observer.observe(section);
+    });
+});
+

@@ -2493,3 +2493,20 @@ a.active-link {
 }
 
 
+.section-container {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-container.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-container.animate-out {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+
