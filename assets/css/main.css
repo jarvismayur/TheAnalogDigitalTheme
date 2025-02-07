@@ -2482,7 +2482,7 @@ a.active-link {
 
 
 .circular-image {
-    width: 68px; /* Adjust as needed */
+    width: 68px !important; /* Adjust as needed */
     height: 68px; /* Keep equal to width */
     border-radius: 50%; /* Ensures circular shape */
     object-fit: cover; /* Ensures the image fills the container */
