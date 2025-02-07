@@ -16,7 +16,7 @@
 
     <?php if ($enable_toc) : ?>
         <div class="row  ">
-            <div class="col-3">
+            <div class="col-lg-3">
                 <div class="table-of-contents my-4 p-3 border rounded d-none d-lg-block" id="toc-list">
                     <h2 class="h2">Table of Contents</h2>
                     <?php
@@ -59,7 +59,7 @@
                     ?>
                 </div>
             </div>
-            <div class="col-9">
+            <div class="col-lg-9 col-12">
                 <div class="content" id="post-content">
                     <?php the_content(); ?>
                 </div>
