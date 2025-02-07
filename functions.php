@@ -1272,30 +1272,18 @@ add_action('wp_head', 'owl_carousel_styles');
 
 function tools_covered_shortcode($atts) {
     // Default image data as a JSON string
-    $default_tools_json = json_encode([
-        ['image' => 'google-ads.png', 'alt' => 'Google Ads'],
-        ['image' => 'google-keyword-planner.png', 'alt' => 'Google Keyword Planner'],
-        ['image' => 'google-my-business.png', 'alt' => 'Google My Business'],
-        ['image' => 'youtube.png', 'alt' => 'YouTube'],
-        ['image' => 'facebook-ads.png', 'alt' => 'Facebook Ads'],
-        ['image' => 'meta-business-suite.png', 'alt' => 'Meta Business Suite'],
-        ['image' => 'chatgpt.png', 'alt' => 'ChatGPT'],
-        ['image' => 'linkedin.png', 'alt' => 'LinkedIn'],
-        ['image' => 'x-twitter.png', 'alt' => 'X (formerly Twitter)'],
-        ['image' => 'google-analytics.png', 'alt' => 'Google Analytics'],
-        ['image' => 'google-tag-manager.png', 'alt' => 'Google Tag Manager'],
-    ]);
+    $default_tools = 'google-ads.png,google-keyword-planner.png,google-my-business.png,youtube.png,facebook-ads.png,meta-business-suite.png,chatgpt.png,linkedin.png,x-twitter.png,google-analytics.png,google-tag-manager.png';
+
 
     // Parse shortcode attributes
     $atts = shortcode_atts([
-        'tools' => $default_tools_json, // JSON-encoded data
+        'tools' => $default_tools, // JSON-encoded data
         'heading' => 'Tools Covered',
         'caption' => 'Learn More',
     ], $atts, 'tools_covered');
 
     // Decode tools data
-    $tools = json_decode($atts['tools'], false);
-    
+    $tools = explode(',', $atts['tools']);    
     $heading = esc_html($atts['heading']);
     $caption = esc_html($atts['caption']);
 
@@ -1307,7 +1295,7 @@ function tools_covered_shortcode($atts) {
         <div class="row text-center align-items-center">
             <?php foreach ($tools as $tool) : ?>
                 <div class="col-6 col-md-2 mb-3">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/<?php echo esc_attr($tool['image']); ?>"
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/<?php echo esc_attr(trim($image)); ?>"
                          alt="<?php echo esc_attr($tool['alt']); ?>" class="img-fluid tools-logo" />
                 </div>
             <?php endforeach; ?>
