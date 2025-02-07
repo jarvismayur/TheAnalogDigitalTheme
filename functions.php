@@ -779,7 +779,7 @@ function display_testimonials_shortcode($atts) {
         // Display image
         echo '<div class="col-md-3 text-center">';
         $image = !empty($testimonial->image) ? esc_url($testimonial->image) : 'https://via.placeholder.com/150';
-        echo '<img src="' . $image . '" class="img-thumbnail rounded-circle" style="max-width:68px; max-height:68px; min-width:25px; min-height:25px; padding:0px; border:0px;" alt="' . esc_html($testimonial->name) . '">';
+        echo '<img src="' . $image . '" class="circular-image"   alt="' . esc_html($testimonial->name) . '">';
         echo '</div>'; // Close col-md-3
         echo '</div>'; // Close first row
 
