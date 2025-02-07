@@ -1397,7 +1397,7 @@ function profile_card_shortcode($atts) {
                         <a href="<?php echo esc_url($atts['linkedin']); ?>" class="me-2"><i class="bi bi-linkedin text-primary"></i></a>
                     <?php endif; ?>
                     <?php if (!empty($atts['youtube'])): ?>
-                        <a href="<?php echo esc_url($atts['youtube']); }" class="me-2"><i class="bi bi-youtube text-danger"></i></a>
+                        <a href="<?php echo esc_url($atts['youtube']); ?>" class="me-2"><i class="bi bi-youtube text-danger"></i></a>
                     <?php endif; ?>
                 </div>
             </div>
