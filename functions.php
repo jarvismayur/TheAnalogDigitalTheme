@@ -1292,7 +1292,7 @@ function tools_covered_shortcode($atts) {
     $atts = shortcode_atts(
         ['tools' => json_encode($default_tools),
             'heading' => $heading,
-            'action' => $caption,    
+            'caption' => $caption,    
     ], // JSON-encoded array for dynamic updates
         $atts,
         'tools_covered'
@@ -1300,6 +1300,8 @@ function tools_covered_shortcode($atts) {
 
     // Decode tools from the provided attribute
     $tools = json_decode($atts['tools'], true);
+    $heading = esc_html($atts['heading']);
+    $caption = esc_html($atts['caption']);
     if (!$tools || !is_array($tools)) {
         $tools = $default_tools; // Fall back to default if JSON is invalid
     }
@@ -1307,7 +1309,9 @@ function tools_covered_shortcode($atts) {
     ob_start(); // Start output buffering
     ?>
     <div class="section-container">
-        <h2 class="h2">Tools Covered</h2>
+
+        <p class="text-large-normal"><em><?php echo $caption; ?></em></p>
+        <h2 class="h2"><?php echo $heading; ?></h2>
         <div class="row text-center align-items-center">
             <?php
             $columns_per_row = 6; // Number of columns per row
