@@ -1825,3 +1825,50 @@ add_filter( 'git_updater_theme_repo', function( $repos ) {
     $repos['TheAnalogDigitalTheme'] = 'jarvismayur/TheAnalogDigitalTheme';
     return $repos;
 });
+
+
+function generate_sitemap() {
+    $postsForSitemap = get_posts(array(
+        'numberposts' => -1,
+        'post_type'   => array('post', 'page'),
+        'post_status' => 'publish'
+    ));
+
+    header('Content-Type: application/xml; charset=utf-8');
+    echo '<?xml version="1.0" encoding="UTF-8"?>';
+    echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+
+    foreach ($postsForSitemap as $post) {
+        $postdate = get_the_date('c', $post->ID);
+        echo '<url>';
+        echo '<loc>' . get_permalink($post->ID) . '</loc>';
+        echo '<lastmod>' . $postdate . '</lastmod>';
+        echo '<changefreq>monthly</changefreq>';
+        echo '<priority>0.8</priority>';
+        echo '</url>';
+    }
+
+    echo '</urlset>';
+    exit;
+}
+
+// Hook the function to handle the sitemap URL
+function add_sitemap_rewrite_rule() {
+    add_rewrite_rule('^sitemap\.xml$', 'index.php?sitemap=1', 'top');
+}
+add_action('init', 'add_sitemap_rewrite_rule');
+
+// Register the sitemap query var
+function add_sitemap_query_var($vars) {
+    $vars[] = 'sitemap';
+    return $vars;
+}
+add_filter('query_vars', 'add_sitemap_query_var');
+
+// Load the sitemap when the URL is accessed
+function load_custom_sitemap() {
+    if (get_query_var('sitemap')) {
+        generate_sitemap();
+    }
+}
+add_action('template_redirect', 'load_custom_sitemap');
