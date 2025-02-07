@@ -1310,7 +1310,7 @@ function tools_covered_shortcode($atts) {
         <div class="row text-center align-items-center">
             <?php echo $tools; ?>
             <?php foreach ($tools as $index => $tool) : ?>
-                <?php echo $tool; ?>
+                <?php echo $tool['image']; ?>
                 <div class="col-6 col-md-2 mb-3">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/<?php echo esc_attr($tool['image']); ?>"
                          alt="<?php echo esc_attr($tool['alt']); ?>" class="img-fluid tools-logo" />
