@@ -1531,8 +1531,8 @@ function course_admission_form_shortcode($atts) {
                 <textarea name="address" id="address" class="form-control"></textarea>
             </div>
 
-            <div class="form-group text-center">
-                <button type="submit" name="submit_admission_form" class="btn btn-primary">Submit</button>
+            <div class="form-group text-center mt-2">
+                <button type="submit" name="submit_admission_form" class="button primary">Submit</button>
             </div>
         </form>
 
