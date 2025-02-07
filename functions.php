@@ -1452,7 +1452,7 @@ function companies_hiring_shortcode($atts) {
                 $image_url = $atts['image' . $i];
                 if ($image_url) {
                     ?>
-                    <div class="col-2">
+                    <div class="col-lg-2 col-6">
                         <img src="<?php echo esc_url($image_url); ?>" alt="Company Logo <?php echo $i; ?>" class="company-logo" />
                     </div>
                     <?php
