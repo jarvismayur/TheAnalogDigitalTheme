@@ -38,10 +38,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a class="skip-link screen-reader-text" href="#main"><?php esc_html_e('Skip to content', 'textdomain'); ?></a>
     <div class="notice-bar">
     <div class="marquee">
-        <p class="text-small-normal">🚀 We are upgrading the website! If you find any bug or error, <a href="">contact us</a> immediately. 📩</p>
+        <p class="text-small-normal">🚀 We are upgrading the website! If you find any bug or error, <a class="text-white" href="">contact us</a> immediately. 📩</p>
     </div>
 </div>
-    <header id="masthead" class="site-header bg-white py-2 shadow-small" role="banner">
+    <header id="masthead" class="site-header bg-white py-1 shadow-small" role="banner">
         <div class="container-header ml-5 mr-5">
             <div class="d-flex align-items-center justify-content-between">
                 <!-- Logo -->
@@ -74,7 +74,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <nav id="site-navigation" class="navbar navbar-expand-lg" role="navigation" aria-label="<?php esc_attr_e('Primary Menu', 'textdomain'); ?>">
                         <div class="container-fluid d-flex align-items-center justify-content-between">
                             <!-- Toggle Button -->
-                            <button class="navbar-toggler" id="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primary-menu" aria-controls="primary-menu" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', 'textdomain'); ?>">
+                            <button class="navbar-toggler" id="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#primary-menu" aria-controls="primary-menu" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', 'textdomain'); ?>">
                                 <i class="bi bi-list text-dark fs-3" id="navbar-toggler-icon"></i>
                             </button>
 
