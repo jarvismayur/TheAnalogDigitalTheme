@@ -179,22 +179,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    let lastScrollTop = 0;
     const noticeBar = document.querySelector(".notice-bar");
 
-    window.addEventListener("scroll", function () {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > lastScrollTop) {
-            // Scrolling down -> Hide notice bar
-            noticeBar.style.transform = "translateY(-100%)";
-        } else {
-            // Scrolling up -> Show notice bar
+    function toggleNoticeBar() {
+        if (window.scrollY === 0) {
+            // Page is at the top, show notice bar
             noticeBar.style.transform = "translateY(0)";
+        } else {
+            // Page is scrolled down, hide notice bar
+            noticeBar.style.transform = "translateY(-100%)";
         }
+    }
 
-        lastScrollTop = scrollTop;
-    });
+    // Run function on scroll
+    window.addEventListener("scroll", toggleNoticeBar);
+
+    // Run function on load to ensure correct state
+    toggleNoticeBar();
 });
 
 
