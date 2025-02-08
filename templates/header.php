@@ -41,7 +41,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="text-small-normal">🚀 We are upgrading the website! If you find any bug or error, <a class="text-white" href="">contact us</a> immediately. 📩</p>
     </div>
 </div>
-    <header id="masthead" class="site-header bg-white py-2 shadow-small" role="banner">
+    <header id="masthead" class="site-header bg-white py-1 shadow-small" role="banner">
         <div class="container-header ml-5 mr-5">
             <div class="d-flex align-items-center justify-content-between">
                 <!-- Logo -->
