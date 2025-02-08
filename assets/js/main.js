@@ -1,3 +1,67 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const toggler = document.getElementById('navbar-toggler');
+    const togglerIcon = document.getElementById('navbar-toggler-icon');
+    const navbarMenu = document.getElementById('navbar-menu');
+
+    if (!toggler || !togglerIcon || !navbarMenu) {
+        console.error('Navbar toggler, icon, or menu not found!');
+        return;
+    }
+
+    // Toggle icon and menu visibility on click
+    toggler.addEventListener('click', function () {
+        const isExpanded = toggler.getAttribute('aria-expanded') === 'true';
+
+        // Toggle `aria-expanded` attribute
+        toggler.setAttribute('aria-expanded', !isExpanded);
+
+        // Update icon
+        if (!isExpanded) {
+            togglerIcon.classList.remove('bi-list');
+            togglerIcon.classList.add('bi-x');
+            navbarMenu.classList.add('show'); // Show the menu
+        } else {
+            togglerIcon.classList.remove('bi-x');
+            togglerIcon.classList.add('bi-list');
+            navbarMenu.classList.remove('show'); // Hide the menu
+        }
+    });
+
+    // Optional: Close menu when clicking outside
+    document.addEventListener('click', function (event) {
+        if (!navbarMenu.contains(event.target) && !toggler.contains(event.target)) {
+            if (toggler.getAttribute('aria-expanded') === 'true') {
+                toggler.setAttribute('aria-expanded', 'false');
+                togglerIcon.classList.remove('bi-x');
+                togglerIcon.classList.add('bi-list');
+                navbarMenu.classList.remove('show');
+            }
+        }
+    });
+
+    // Optional: Reset to initial state on window resize
+    window.addEventListener('resize', function () {
+        if (window.innerWidth >= 992) { // Adjust based on your breakpoint
+            toggler.setAttribute('aria-expanded', 'false');
+            togglerIcon.classList.remove('bi-x');
+            togglerIcon.classList.add('bi-list');
+            navbarMenu.classList.remove('show');
+        }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                let el = entry.target;
+                el.classList.add(el.dataset.animation);
+                el.style.opacity = 1;
+                observer.unobserve(el); // Stop observing after animation starts
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll(".hidden_animate").forEach(el => observer.observe(el));
+});
 
 
 
@@ -105,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         },
-        { threshold: 0.2 } // Adjust the threshold as needed
+        { threshold: 0.4 } // Adjust the threshold as needed
     );
 
     sections.forEach((section) => {
