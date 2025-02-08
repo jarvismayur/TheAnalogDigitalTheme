@@ -2148,6 +2148,13 @@ a.active-link {
 		padding-bottom:15px;
     }
     
+    .footer-section-container {
+        padding-left: 15px; /* Reduced padding for mobile */
+        padding-right: 15px; /* Reduced padding for mobile */
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    
     .tools-logo{
         width: 100px;
         height: 40px;
