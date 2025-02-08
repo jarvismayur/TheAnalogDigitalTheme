@@ -38,7 +38,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a class="skip-link screen-reader-text" href="#main"><?php esc_html_e('Skip to content', 'textdomain'); ?></a>
     <div class="notice-bar">
     <div class="marquee">
-        <p>🚀 We are upgrading the website! If you find any bug or error, contact us immediately. 📩</p>
+        <p class="text-large-normal">🚀 We are upgrading the website! If you find any bug or error, contact us immediately. 📩</p>
     </div>
 </div>
     <header id="masthead" class="site-header bg-white py-2 shadow-small" role="banner">
