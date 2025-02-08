@@ -2602,3 +2602,7 @@ a.active-link {
     font-size: 2rem;
     color : var(--button-color);
 }
+
+img{
+    border-radius: 25px;
+}
