@@ -2547,9 +2547,8 @@ a.active-link {
 .notice-bar {
     width: 100%;
     background: var(--active-link-color);
-    color: #000;
+    color: var(--background-light);
     font-weight: bold;
-    padding: 8px 0;
     text-align: center;
     position: fixed;
     top: 0;
