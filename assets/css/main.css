@@ -1659,6 +1659,7 @@ a.active-link {
     width: 137px;
     height: 51px;
     object-fit: contain;
+    border-radius: none !important;
 }
 
 .navbar-nav .nav-item a{
