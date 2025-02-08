@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         },
-        { threshold: 0.5 } // Adjust the threshold as needed
+        { threshold: 0.4 } // Adjust the threshold as needed
     );
 
     sections.forEach((section) => {
