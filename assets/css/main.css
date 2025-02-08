@@ -2573,4 +2573,9 @@ a.active-link {
 }
 
 
+/* Add margin to site content to prevent overlap */
+.site-content {
+    margin-top: 40px; /* Same as notice bar height */
+}
+
 
