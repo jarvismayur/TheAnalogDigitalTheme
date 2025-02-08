@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener('DOMContentLoaded', function () {
     const toggler = document.getElementById('navbar-toggler');
     const togglerIcon = document.getElementById('navbar-toggler-icon');
-    const navbarMenu = document.getElementById('navbar-menu');
+    const navbarMenu = document.getElementById('primary-menu');
 
     if (!toggler || !togglerIcon || !navbarMenu) {
         console.error('Navbar toggler, icon, or menu not found!');
