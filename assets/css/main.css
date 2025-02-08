@@ -2191,7 +2191,7 @@ a.active-link {
 .site-header {
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 999;
     transition: box-shadow 0.3s ease; /* Add transition for shadow */
 }
 
