@@ -661,7 +661,7 @@ button {
     color: var(--secondary-color);
 }
 
-button {
+.button {
     position: relative;
     padding: 12px 24px;
     font-size: 18px;
