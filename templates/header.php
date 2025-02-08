@@ -102,7 +102,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </div>
                         </div>
                     </nav>
-                            </div>
+                            
 
 
 
@@ -113,6 +113,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="<?php echo esc_url(get_theme_mod('cta_button_url', '#')); ?>" class="btn text-white text-regular-bold border-25 bg-color-secordary-light pl-2 pr-2">
                 <?php echo esc_html(get_theme_mod('cta_button_text', __('Call to Action', 'textdomain'))); ?>
             </a>
+        </div>
         </div>
         
 
