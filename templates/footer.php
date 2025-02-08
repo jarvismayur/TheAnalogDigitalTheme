@@ -1,5 +1,5 @@
 <footer class="site-footer bg-white text-dark py-4 bg-white py-3 shadow-medium" >
-    <div class="section-container">
+    <div class="footer-section-container">
     <div class="row">
         <!-- Large Column -->
         <div class="col-lg-4 col-md-6 mb-4 footer-col footer-col-large">
@@ -138,7 +138,6 @@
 </footer>
 
 <!-- Bootstrap JavaScript and dependencies -->
-<script src="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap/js/jquery-3.7.1.min.js' ); ?>"></script>
 <script src="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap/js/bootstrap.bundle.min.js' ); ?>"></script>
 <script src="<?php echo esc_url( get_template_directory_uri() . '/assets/js/main.js' ); ?>"></script>
 
@@ -151,51 +150,51 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
 <script src="https://owlcarousel2.github.io/OwlCarousel2/assets/vendors/highlight.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+
+
 <script>
-    $(document).ready(function () {
-        $('#courseslist .owl-carousel').owlCarousel({
-            center: true,                // Center the active item
-            loop: true,                  // Enable infinite looping
-            margin: 30,                  // Space between items
-            items: 1,                    // Number of items to show
-            dots: true,                  // Enable pagination dots
-            autoplay: true,              // Auto-play the carousel
-            autoplayTimeout: 5000,       // Delay between auto-play slides
-            responsiveClass: true,
-            responsive: {                // Responsive settings
-                0: {
-                    items: 1             // Show 1 item on small screens
-                }
-            }
-        });
-    });
-</script>
-<script>
-    $(document).ready(function () {
-    $('.owl-carousel').owlCarousel({
-        center: true,                // Center the active item
-        loop: true,                  // Enable infinite looping
-        margin: 30,                  // Space between items
-        items: 3,                    // Number of items to show
-        dots: true,                  // Enable pagination dots
-        autoplay: true,              // Auto-play the carousel
-        autoplayTimeout: 3000,       // Delay between auto-play slides
-		responsiveClass: true,
-        responsive: {                // Responsive settings
+   $(document).ready(function () {
+    // Course List Carousel
+    $('#courseslist .owl-carousel').owlCarousel({
+        center: true,
+        loop: true,
+        margin: 30,
+        items: 1,
+        dots: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        responsiveClass: true,
+        responsive: {
             0: {
-                items: 1             // Show 1 item on small screens
+                items: 1
+            }
+        }
+    });
+
+    // Testimonials Carousel
+    $('#testimonials .owl-carousel').owlCarousel({
+        center: true,
+        loop: true,
+        margin: 30,
+        items: 3,
+        dots: true,
+        autoplay: true,
+        autoplayTimeout: 3000,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1
             },
             600: {
-                items: 2             // Show 2 items on medium screens
+                items: 2
             },
             1000: {
-                items: 3             // Show 3 items on large screens
+                items: 3
             }
         }
     });
 });
+
 	
 	
 $(document).ready(function(){

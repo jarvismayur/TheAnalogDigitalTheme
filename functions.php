@@ -1149,7 +1149,7 @@ function owl_carousel_shortcode($atts) {
         foreach ($items as $index => $item) {
             $item_data = explode(',', $item);
 
-            $image = isset($item_data[0]) ? $item_data[0] : 'https://placehold.co/1279x572';
+            $image = isset($item_data[0]) && !empty($item_data[0]) ? $item_data[0] : 'https://placehold.co/1279x572';
             $caption = isset($item_data[1]) ? $item_data[1] : 'Caption ' . ($index + 1);
             $heading = isset($item_data[2]) ? $item_data[2] : 'Heading ' . ($index + 1);
             $subheading = isset($item_data[3]) ? $item_data[3] : 'Subheading ' . ($index + 1);
@@ -1158,7 +1158,7 @@ function owl_carousel_shortcode($atts) {
             $button_2_text = isset($item_data[6]) ? $item_data[6] : 'Button 2';
             $button_2_url = isset($item_data[7]) ? $item_data[7] : '#';
 
-            echo '<div class="item desktop">
+            echo '<div class="item ">
                     <img src="'.esc_url($image).'" alt="Image '.($index + 1).'">
                     <div class="overlay">
                         <p class="text-large-bold">'.esc_html($caption).'</p>
