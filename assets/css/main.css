@@ -652,34 +652,34 @@ code {
     color: var(--primary-light);
 }
 
+blockquote {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400; /* Italic */
+    font-size: 18px; /* Desktop */
+    line-height: 28px;
+    letter-spacing: 0px;
+    color: var(--secondary-color);
+}
+
+
+/* Base Button Styles */
 button {
     font-family: 'Outfit', sans-serif;
     font-weight: 500; /* Medium */
     font-size: 16px; /* Desktop */
     line-height: 20px;
     letter-spacing: 1px;
-    color: var(--secondary-color);
-}
-
-.button {
-    position: relative;
-    padding: 12px 24px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: var(--secondary-light);
-    color: var(--background-light);
     border: none;
-    border-radius: 8px;
+    padding: 12px 24px;
+    border-radius: 25px;
     cursor: pointer;
+    position: relative;
     overflow: hidden;
     transition: all 0.3s ease-in-out;
 }
 
-
-
-
-
-.button::before {
+/* Glow Animation Effect */
+button::before {
     content: "";
     position: absolute;
     top: 0;
@@ -690,88 +690,55 @@ button {
     transition: left 0.8s ease-in-out;
 }
 
-.button:hover::before {
+button:hover::before {
     left: 100%;
 }
 
-.button:hover {
+button:hover {
     transform: scale(1.05);
 }
 
-blockquote {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400; /* Italic */
-    font-size: 18px; /* Desktop */
-    line-height: 28px;
-    letter-spacing: 0px;
-    color: var(--secondary-color);
-}
-
+/* Primary Button */
 button.primary {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 500; /* Medium */
-    font-size: 16px; /* Desktop */
-    line-height: 20px;
-    letter-spacing: 1px;
+    font-weight: 500;
     color: var(--primary-button-text);
     background-color: var(--primary-button-bg);
-    padding: 12px 24px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
 }
 
-
-/* Secondary Button (Desktop and Mobile) */
+/* Secondary Button */
 button.secondary {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 400; /* Regular */
-    font-size: 16px; /* Desktop */
-    line-height: 20px;
-    letter-spacing: 1px;
+    font-weight: 400;
     color: var(--secondary-button-text);
     background-color: var(--secondary-button-bg);
-    padding: 12px 24px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
 }
 
-
-
-/* Tertiary Button (Desktop and Mobile) */
+/* Tertiary Button */
 button.tertiary {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 400; /* Regular */
-    font-size: 14px; /* Desktop */
+    font-weight: 400;
+    font-size: 14px;
     line-height: 18px;
-    letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--tertiary-button-text);
     background-color: var(--tertiary-button-bg);
-    padding: 12px 24px;
     border: 2px solid var(--tertiary-button-text);
-    border-radius: 25px;
-    cursor: pointer;
 }
 
-
-
-/* Disabled Button (Desktop and Mobile) */
+/* Disabled Button (No Hover Effect) */
 button.disabled {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 400; /* Regular */
-    font-size: 16px; /* Desktop */
-    line-height: 20px;
-    letter-spacing: 1px;
+    font-weight: 400;
+    font-size: 16px;
     text-transform: uppercase;
     color: var(--disabled-button-text);
     background-color: var(--disabled-button-bg);
-    padding: 12px 24px;
-    border: none;
-    border-radius: 25px;
     cursor: not-allowed;
     opacity: 0.5;
+}
+
+/* Remove Hover Effect from Disabled Button */
+button.disabled::before,
+button.disabled:hover {
+    left: -100%;
+    transform: none;
 }
 
 /* Default Link (Desktop and Mobile) */
