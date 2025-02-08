@@ -2544,3 +2544,38 @@ a.active-link {
 }
 
 
+.notice-bar {
+    width: 100%;
+    background: #ffcc00;
+    color: #000;
+    font-weight: bold;
+    padding: 8px 0;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.marquee p {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll-left 10s linear infinite;
+    font-size: 16px;
+}
+
+@keyframes scroll-left {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* हेडर को नीचे शिफ्ट करें ताकि नोटिस बार के कारण कोई ओवरलैप न हो */
+.site-header {
+    margin-top: 40px;
+}
+
