@@ -177,3 +177,24 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+
+document.addEventListener("DOMContentLoaded", function () {
+    let lastScrollTop = 0;
+    const noticeBar = document.querySelector(".notice-bar");
+
+    window.addEventListener("scroll", function () {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop) {
+            // Scrolling down -> Hide notice bar
+            noticeBar.style.transform = "translateY(-100%)";
+        } else {
+            // Scrolling up -> Show notice bar
+            noticeBar.style.transform = "translateY(0)";
+        }
+
+        lastScrollTop = scrollTop;
+    });
+});
+
+
