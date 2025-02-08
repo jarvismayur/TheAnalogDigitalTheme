@@ -74,7 +74,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <nav id="site-navigation" class="navbar navbar-expand-lg" role="navigation" aria-label="<?php esc_attr_e('Primary Menu', 'textdomain'); ?>">
                         <div class="container-fluid d-flex align-items-center justify-content-between">
                             <!-- Toggle Button -->
-                            <button class="navbar-toggler" id="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primary-menu" aria-controls="primary-menu" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', 'textdomain'); ?>">
+                            <button class="navbar-toggler" id="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#primary-menu" aria-controls="primary-menu" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', 'textdomain'); ?>">
                                 <i class="bi bi-list text-dark fs-3" id="navbar-toggler-icon"></i>
                             </button>
 
