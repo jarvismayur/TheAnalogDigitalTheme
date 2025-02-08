@@ -377,8 +377,8 @@ function custom_section_shortcode($atts) {
         array(
             'left_title' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
             'left_text' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error ipsum accusantium porro nesciunt asperiores, officia dolorem maxime ullam at veniam blanditiis quibusdam totam odit vel deleniti sequi animi minima eligendi!',
-            'left_button1' => 'Learn More',
-            'left_button2' => 'Learn More',
+            'button_text' => 'Learn More',
+            'button_url' => 'Learn More',
             'right_text1' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit ex aspernatur inventore quasi veniam, a cupiditate vel iste error atque soluta. Animi deleniti deserunt a eius numquam voluptatibus, labore distinctio.',
             'right_text2' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati commodi id tenetur cumque minima pariatur quos illum assumenda doloribus vero soluta debitis, et delectus eveniet officiis. Facere ut quae dolorem.',
             'right_image1' => 'https://placehold.co/300x400',
@@ -395,8 +395,8 @@ function custom_section_shortcode($atts) {
     // Sanitize attributes to avoid errors or security risks
     $left_title = $atts['left_title'];
     $left_text = esc_html($atts['left_text']);
-    $left_button1 = esc_html($atts['left_button1']);
-    $left_button2 = esc_html($atts['left_button2']);
+    $button_text = esc_html($atts['button_text']);
+    $button_url = esc_html($atts['button_url']);
     $right_text1 = esc_html($atts['right_text1']);
     $right_text2 = esc_html($atts['right_text2']);
     $right_image1 = esc_url($atts['right_image1']);
@@ -467,7 +467,7 @@ function custom_section_shortcode($atts) {
         <h1 class="h1 mb-4 pl-2  text-white"><span class="typed" data-typed-items=" <?php  echo $typed_items; ?>"> <?php echo $typed_first_item; ?></span><span class="typed-cursor typed-cursor--blink" > </span></h1>
         <p class="text-large-normal"> <span id="rotating-text" class="text-large-normal mb-4 pl-2" data-change-items="   <?php  // echo $rotating_items; ?>"> <?php  // echo $rotating_frist_item; ?> </span></p>
         <div class="d-flex w-100 justify-content-center mb-5 gap-3">
-            <button href="#" class=" button primary"><?php echo $left_button1; ?></button>
+            <button href="<?php echo $button_url; ?>" class=" button primary"><?php echo $button_text; ?></button>
         </div>
     </div>
 </div>
