@@ -71,8 +71,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
 
                <!-- Navigation -->
+                <div class="d-flex align-items-center ml-auto">
                     <nav id="site-navigation" class="navbar navbar-expand-lg" role="navigation" aria-label="<?php esc_attr_e('Primary Menu', 'textdomain'); ?>">
-                        <div class="container-fluid d-flex align-items-center justify-content-end ">
+                        <div class="container-fluid d-flex align-items-center justify-content-between">
                             <!-- Toggle Button -->
                             <button class="navbar-toggler" id="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#primary-menu" aria-controls="primary-menu" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', 'textdomain'); ?>">
                                 <i class="bi bi-list text-dark fs-3" id="navbar-toggler-icon"></i>
@@ -101,6 +102,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </div>
                         </div>
                     </nav>
+                            </div>
 
 
 
@@ -112,6 +114,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <?php echo esc_html(get_theme_mod('cta_button_text', __('Call to Action', 'textdomain'))); ?>
             </a>
         </div>
+        
 
                
 
