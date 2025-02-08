@@ -2562,7 +2562,6 @@ a.active-link {
     display: inline-block;
     white-space: nowrap;
     animation: scroll-left 10s linear infinite;
-    font-size: 16px;
 }
 
 @keyframes scroll-left {
