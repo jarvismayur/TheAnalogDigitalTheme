@@ -467,8 +467,7 @@ function custom_section_shortcode($atts) {
         <h1 class="h1 mb-4 pl-2  text-white"><span class="typed" data-typed-items=" <?php  echo $typed_items; ?>"> <?php echo $typed_first_item; ?></span><span class="typed-cursor typed-cursor--blink" > </span></h1>
         <p class="text-large-normal"> <span id="rotating-text" class="text-large-normal mb-4 pl-2" data-change-items="   <?php  // echo $rotating_items; ?>"> <?php  // echo $rotating_frist_item; ?> </span></p>
         <div class="d-flex w-100 justify-content-center mb-5 gap-3">
-            <button href="#" class=" button primary">Get Started</button>
-            <button href="#" class="button  secondary ">Learn More</button>
+            <button href="#" class=" button primary"><?php echo $left_button1; ?></button>
         </div>
     </div>
 </div>
@@ -1169,7 +1168,9 @@ function owl_carousel_shortcode($atts) {
                             <button class="button primary">
                                 <a href="'.esc_url($button_1_url).'" class="no-style-link">'.esc_html($button_1_text).'</a>
                             </button>
-                            
+                            <button class="button secondary">
+                                <a href="'.esc_url($button_2_url).'" class="no-style-link">'.esc_html($button_2_text).'</a>
+                            </button>
                         </div>
                     </div>
                 </div>';
