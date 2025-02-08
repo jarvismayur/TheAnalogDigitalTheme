@@ -253,10 +253,47 @@ h1, h2, h3, h4, h5, h6 {
     
 }
 
-button {
+.button {
+    position: relative;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
     background-color: var(--secondary-light);
     color: var(--background-light);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
+
+/* Glowing Border Effect on Hover */
+.button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 10%, transparent 80%);
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* Button Hover Effect */
+.button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Activate Glow */
+.button:hover::before {
+    opacity: 1;
+}
+
+/* Subtle Click Effect */
+.button:active {
+    transform: scale(0.98);
+}
+
 
 .card, .modal, .form {
     background-color: var(--surface-light);
