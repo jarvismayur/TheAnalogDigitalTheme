@@ -740,7 +740,7 @@ function display_testimonials_shortcode($atts) {
 
     if (!empty($testimonials)) {
     // Add Owl Carousel wrapper
-    echo '<div class="section-container" id="testimonials">
+    echo '<div  id="testimonials">
        
         <p class="text-large-normal "><em>' . $subheading . '</em></p>
         <h2 class="h2 ">' . $heading . '</h2>
