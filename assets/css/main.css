@@ -1645,21 +1645,21 @@ a.active-link {
 .footer-logo{
   width: 192px;
   height: 74px;
-  border-radius: none !important;
+  border-radius: 0 !important;
 }
 
 
 .site-logo img{
   width: 137px;
   height: 51px;
-  border-radius: none !important;
+  border-radius: 0 !important;
 }
 
 .custom-logo-link img {
     width: 137px;
     height: 51px;
     object-fit: contain;
-    border-radius: none !important;
+    border-radius: 0 !important;
 }
 
 .navbar-nav .nav-item a{
@@ -2405,7 +2405,7 @@ a.active-link {
 .tools-logo{
     width: 143px;
     height: 66px;
-    border-radius: none !important;
+    border-radius: 0 !important;
 }
 
 
@@ -2518,7 +2518,7 @@ a.active-link {
 .company-logo {
     width: 142px;
     height: 46px;
-    border-radius: none !important;
+    border-radius: 0 !important;
 
 }
 
