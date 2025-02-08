@@ -101,7 +101,8 @@ window.addEventListener('scroll', function() {
 
 
 const rotatingText = document.getElementById("rotating-text");
-const texts = rotatingText.getAttribute("data-change-items").split("|"); // Get text list from the data attribute
+if (rotatingText){
+    const texts = rotatingText.getAttribute("data-change-items").split("|"); // Get text list from the data attribute
 let currentRotatingTextIndex = 0; // Track the index of the rotating text
 
 // Function to show next rotating text with smooth transition
@@ -169,6 +170,8 @@ if (selectTyped) {
     rotatingText.style.opacity = 1; // Ensure the text is visible initially
     showNextText(); // Display the first rotating text
     typeEffect(); // Start the typing effect
+}
+
 }
 
 
