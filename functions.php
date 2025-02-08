@@ -1169,9 +1169,7 @@ function owl_carousel_shortcode($atts) {
                             <button class="button primary">
                                 <a href="'.esc_url($button_1_url).'" class="no-style-link">'.esc_html($button_1_text).'</a>
                             </button>
-                            <button class="button secondary">
-                                <a href="'.esc_url($button_2_url).'" class="no-style-link">'.esc_html($button_2_text).'</a>
-                            </button>
+                            
                         </div>
                     </div>
                 </div>';
