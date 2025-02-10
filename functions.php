@@ -1873,51 +1873,71 @@ function load_custom_sitemap() {
 add_action('template_redirect', 'load_custom_sitemap');
 
 
-function consultation_modal_shortcode() {
+function bootstrap_modal_shortcode($atts) {
     ob_start();
     ?>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#consultationModal">
-        Schedule Free Consultation
+    <!-- Button to trigger the modal -->
+    <button type="button" class="btn btn-primary" onclick="showModal()">
+        Launch demo modal
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="consultationModal" tabindex="-1" aria-labelledby="consultationModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="consultationModalLabel">Schedule a Free Consultation</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal Title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="consultationForm">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                    This is the modal content. Customize it as needed.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        document.getElementById("consultationForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            alert("Form submitted successfully!");
-            var modal = new bootstrap.Modal(document.getElementById("consultationModal"));
-            modal.hide();
-        });
+        function showModal() {
+            var modalElement = document.getElementById('exampleModalCenter');
+            var backdropElement = document.createElement("div");
+
+            var modal = new bootstrap.Modal(modalElement, {
+                backdrop: true,
+                keyboard: true
+            });
+
+            modal.show();
+
+            setTimeout(() => {
+                modalElement.style.display = "block";
+                modalElement.style.opacity = "1";
+                modalElement.style.visibility = "visible";
+
+                backdropElement.className = "modal-backdrop fade show";
+                backdropElement.style.opacity = "0.5";
+                document.body.appendChild(backdropElement);
+
+                document.body.style.overflow = "hidden";
+            }, 100);
+
+            modalElement.addEventListener("hidden.bs.modal", function () {
+                modalElement.style.display = "none";
+                modalElement.style.opacity = "0";
+                modalElement.style.visibility = "hidden";
+
+                if (backdropElement) {
+                    backdropElement.remove();
+                }
+
+                document.body.style.overflow = "auto";
+            });
+        }
     </script>
     <?php
     return ob_get_clean();
 }
-add_shortcode('consultation_modal', 'consultation_modal_shortcode');
+add_shortcode('bootstrap_modal', 'bootstrap_modal_shortcode');

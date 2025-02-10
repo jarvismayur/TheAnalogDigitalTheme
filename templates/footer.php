@@ -140,51 +140,7 @@
 <!-- Bootstrap JavaScript and dependencies -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    function showModal() {
-        var modalElement = document.getElementById('exampleModalCenter');
-        var backdropElement = document.createElement("div");
 
-        // Bootstrap Modal API instance
-        var modal = new bootstrap.Modal(modalElement, {
-            backdrop: true, // Show backdrop
-            keyboard: true  // Allow closing with ESC key
-        });
-
-        // Show modal using Bootstrap's API
-        modal.show();
-
-        // Ensure display settings
-        setTimeout(() => {
-            modalElement.style.display = "block";
-            modalElement.style.opacity = "1";
-            modalElement.style.visibility = "visible";
-
-            // Create and customize backdrop
-            backdropElement.className = "modal-backdrop fade show";
-            backdropElement.style.opacity = "0.5"; // Adjust backdrop opacity
-            document.body.appendChild(backdropElement);
-
-            // Ensure body doesn't scroll while modal is open
-            document.body.style.overflow = "hidden";
-        }, 100); // Small delay ensures Bootstrap styles are applied first
-
-        // Handle modal close event
-        modalElement.addEventListener("hidden.bs.modal", function () {
-            modalElement.style.display = "none"; // Hide modal properly
-            modalElement.style.opacity = "0";
-            modalElement.style.visibility = "hidden";
-
-            // Remove backdrop
-            if (backdropElement) {
-                backdropElement.remove();
-            }
-
-            // Restore body scroll
-            document.body.style.overflow = "auto";
-        });
-    }
-</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
