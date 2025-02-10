@@ -1882,7 +1882,7 @@ function bootstrap_modal_shortcode($atts) {
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="hieght:auto!important">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header ">
@@ -1948,6 +1948,7 @@ function bootstrap_modal_shortcode($atts) {
                 modalElement.style.display = "block";
                 modalElement.style.opacity = "1";
                 modalElement.style.visibility = "visible";
+                modelElement.style.height = "auto !important"
 
                 backdropElement.className = "modal-backdrop fade show";
                 backdropElement.style.opacity = "0.5";
