@@ -2664,3 +2664,9 @@ img{
 }
 
 
+
+.modal {
+    z-index: 1050; /* Bootstrap modals use 1050 */
+    display: block !important; /* Force show if JS removes visibility */
+}
+
