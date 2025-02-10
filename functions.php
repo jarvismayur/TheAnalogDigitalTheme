@@ -1878,7 +1878,7 @@ function bootstrap_modal_shortcode($atts) {
     ?>
     <!-- Button to trigger the modal -->
     <button type="button" class="btn btn-primary" onclick="showModal()">
-        Get Free Consulting
+        Launch demo modal
     </button>
 
     <!-- Modal -->
@@ -1886,7 +1886,7 @@ function bootstrap_modal_shortcode($atts) {
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Get Free Consulting</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal Title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -1923,6 +1923,10 @@ function bootstrap_modal_shortcode($atts) {
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    
+                </div>
             </div>
         </div>
     </div>
@@ -1930,19 +1934,45 @@ function bootstrap_modal_shortcode($atts) {
     <script>
         function showModal() {
             var modalElement = document.getElementById('exampleModalCenter');
+            var backdropElement = document.createElement("div");
+
             var modal = new bootstrap.Modal(modalElement, {
                 backdrop: true,
                 keyboard: true
             });
-            modal.show();
-        }
 
+            modal.show();
+
+            setTimeout(() => {
+                modalElement.style.display = "block";
+                modalElement.style.opacity = "1";
+                modalElement.style.visibility = "visible";
+
+                backdropElement.className = "modal-backdrop fade show";
+                backdropElement.style.opacity = "0.5";
+                document.body.appendChild(backdropElement);
+
+                document.body.style.overflow = "hidden";
+            }, 100);
+
+            modalElement.addEventListener("hidden.bs.modal", function () {
+                modalElement.style.display = "none";
+                modalElement.style.opacity = "0";
+                modalElement.style.visibility = "hidden";
+
+                if (backdropElement) {
+                    backdropElement.remove();
+                }
+
+                document.body.style.overflow = "auto";
+            });
+        }
         document.getElementById('consultingForm').addEventListener('submit', function(event) {
             event.preventDefault();
             var formData = new FormData(this);
             fetch("<?php echo admin_url('admin-ajax.php'); ?>", {
                 method: "POST",
-                body: new URLSearchParams([...formData]) + "&action=save_consulting_form"
+                body: new URLSearchParams(formData) + "&action=save_consulting_form"
             }).then(response => response.text()).then(data => {
                 alert("Form submitted successfully!");
                 document.getElementById('consultingForm').reset();
