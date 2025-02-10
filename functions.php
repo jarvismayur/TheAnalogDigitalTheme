@@ -1953,7 +1953,7 @@ function bootstrap_modal_shortcode($atts) {
                 modalElement.style.opacity = "1";
                 modalElement.style.visibility = "visible";
                 modalElement.style.height = "auto"
-                modalBtn.style.z-index = "-1";
+                modalBtn.style.zIndex  = "-1";
 
                 backdropElement.className = "modal-backdrop fade show";
                 backdropElement.style.opacity = "0.5";
@@ -1966,7 +1966,7 @@ function bootstrap_modal_shortcode($atts) {
                 modalElement.style.display = "none";
                 modalElement.style.opacity = "0";
                 modalElement.style.visibility = "hidden";
-                modalBtn.style.z-index = "1051";
+                modalBtn.style.zIndex  = "1051";
 
                 if (backdropElement) {
                     backdropElement.remove();
