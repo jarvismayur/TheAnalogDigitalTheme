@@ -1877,8 +1877,8 @@ function bootstrap_modal_shortcode($atts) {
     ob_start();
     ?>
     <!-- Button to trigger the modal -->
-     <div class="mx-auto text-center " style="z-index:1051">
-         <button type="button" class="button primary" onclick="showModal()">
+     <div class="mx-auto text-center " style="postition:relative; z-index:1051">
+         <button type="button" class="button primary" onclick="showModal()" id="modalBtn">
         Get Free Consulting 
     </button>
     </div>
@@ -1938,6 +1938,8 @@ function bootstrap_modal_shortcode($atts) {
         function showModal() {
             var modalElement = document.getElementById('exampleModalCenter');
             var backdropElement = document.createElement("div");
+            var modalBtn = document.getElementById('modalBtn');
+
 
             var modal = new bootstrap.Modal(modalElement, {
                 backdrop: true,
@@ -1951,6 +1953,7 @@ function bootstrap_modal_shortcode($atts) {
                 modalElement.style.opacity = "1";
                 modalElement.style.visibility = "visible";
                 modalElement.style.height = "auto"
+                modalBtn.style.z-index = "-1";
 
                 backdropElement.className = "modal-backdrop fade show";
                 backdropElement.style.opacity = "0.5";
@@ -1963,6 +1966,7 @@ function bootstrap_modal_shortcode($atts) {
                 modalElement.style.display = "none";
                 modalElement.style.opacity = "0";
                 modalElement.style.visibility = "hidden";
+                modalBtn.style.z-index = "1051";
 
                 if (backdropElement) {
                     backdropElement.remove();
