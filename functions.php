@@ -1992,7 +1992,7 @@ function bootstrap_modal_shortcode($atts) {
     <?php
     return ob_get_clean();
 }
-add_shortcode('bootstrap_modal', 'bootstrap_modal_shortcode');
+add_shortcode('get_free_consulting_btn', 'bootstrap_modal_shortcode');
 
 function create_consulting_table() {
     global $wpdb;
