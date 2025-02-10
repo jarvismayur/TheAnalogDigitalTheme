@@ -140,6 +140,14 @@
 <!-- Bootstrap JavaScript and dependencies -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $("#showModalButton").click(function(){
+      alert("Mayur Tembhare");
+      $("#exampleModalCenter").modal('show');
+    });
+  });
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
 <script src="<?php echo esc_url( get_template_directory_uri() . '/assets/js/main.js' ); ?>"></script>
