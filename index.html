@@ -7,43 +7,89 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        .icon {
-            font-size: 2rem;
-            color: #007bff;
+        .blockquote {
+            padding-left: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blockquote::before,
+        .blockquote::after {
+            position: absolute;
+            color: #777;
+        }
+
+        .blockquote p {
+            margin: 0;
+        }
+
+        .blockquote p + p {
+            margin-top: 1rem;
+        }
+
+        .blockquote--slashes::before {
+            content: "//";
+            transform: rotate(90deg);
+            left: 0;
+        }
+
+        .blockquote--slashes::after {
+            content: "";
+            left: 5px;
+            top: 25px;
+            width: 1px;
+            height: 100%;
+            background-color: currentColor;
+        }
+
+        .blockquote--classic::before {
+            content: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='%23777777'><path d='M9.983 3v7.391C9.983 16.095 6.252 19.961 1 21l-.995-2.151C2.437 17.932 4 15.211 4 13H0V3h9.983zM24 3v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151C16.437 17.932 18 15.211 18 13h-3.983V3H24z'/></svg>");
+            left: 0;
+        }
+
+        .blockquote--classic::after {
+            content: "";
+            left: 5px;
+            top: 25px;
+            width: 1px;
+            height: 100%;
+            background-color: currentColor;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            width: 40em;
+            margin: 5rem auto;
+            background-color: #111;
+            color: #fff;
+            line-height: 1.5;
+        }
+
+        a {
+            color: #00ffbd;
+        }
+
+        code {
+            border: 1px solid rgb(65, 65, 65);
+            background-color: rgb(34, 33, 33);
+            padding: 0.3rem 0.4rem 0.15rem;
+            line-height: 100%;
+            border-radius: 0.3rem;
+        }
+
+        blockquote + blockquote {
+            margin-top: 5rem;
         }
     </style>
 </head>
 <body>
-    <div class="container py-5">
-        <div class="row text-center">
-            <div class="col-md-3 mb-4">
-                <i class="bi bi-lightbulb icon"></i>
-                <h4>Strategic Digital Innovation</h4>
-                <p>Crafting cutting-edge strategies that amplify your brand, elevate your sales, and engage your audience like never before.</p>
-            </div>
-            <div class="col-md-3 mb-4">
-                <i class="bi bi-bar-chart-steps icon"></i>
-                <h4>Innovation-Driven Results</h4>
-                <p>Transforming groundbreaking ideas into measurable outcomes through a seamless blend of strategy, creativity, and technology.</p>
-            </div>
-            <div class="col-md-3 mb-4">
-                <i class="bi bi-graph-up-arrow icon"></i>
-                <h4>Boost Engagement & Online Presence</h4>
-                <p>Enhancing social media impact, driving website traffic, and creating meaningful connections to help you stand out in the digital noise.</p>
-            </div>
-            <div class="col-md-3 mb-4">
-                <i class="bi bi-cpu icon"></i>
-                <h4>Future-Ready Solutions</h4>
-                <p>Integrating technology and innovation to build a brand that adapts, evolves, and excels in an ever-changing digital landscape.</p>
-            </div>
-            <!--<div class="col-md-3 mb-4">
-                <i class="bi bi-users icon"></i>
-                <h4>Customer-Centric Excellence</h4>
-                <p>Delivering personalized solutions designed to meet unique needs and exceed expectations, making your success our top priority.</p>
-            </div>-->
-        </div>
-    </div>
+    <blockquote class="blockquote blockquote--slashes">
+        <p>Address lookup tables can be created with either a <code>v0</code> transaction or a <code>legacy</code> transaction. But the Solana runtime can only retrieve and handle the additional addresses within a lookup table while using a <a href="">v0 Versioned Transactions</a></p>
+    </blockquote>
 
+    <blockquote class="blockquote blockquote--classic">
+        <p>Address lookup tables can be created with either a <code>v0</code> transaction or a <code>legacy</code> transaction. But the Solana runtime can only retrieve and handle the additional addresses within a lookup table while using a <a href="">v0 Versioned Transactions</a></p>
+    </blockquote>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

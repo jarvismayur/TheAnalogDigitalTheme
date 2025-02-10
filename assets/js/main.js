@@ -204,3 +204,29 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+function animateCountUp(element) {
+    const text = element.innerText;
+    const number = parseInt(text.replace(/\D/g, "")); // Extract numbers only
+    let current = 0;
+    const increment = Math.ceil(number / 100); // Adjust speed
+    
+    function updateCount() {
+        if (current < number) {
+            current += increment;
+            if (current > number) current = number;
+            element.innerText = current.toLocaleString();
+            requestAnimationFrame(updateCount);
+        }
+    }
+    
+    updateCount();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const counterElement = document.querySelector("h1.h1");
+    if (counterElement) {
+        animateCountUp(counterElement);
+    }
+});
+
+
