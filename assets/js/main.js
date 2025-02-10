@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll(".section-container");
+    const sections = document.querySelectorAll(".section-container:not(.modal)");
+
 
     const observer = new IntersectionObserver(
         (entries) => {
