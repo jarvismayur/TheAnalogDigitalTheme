@@ -1969,15 +1969,23 @@ function bootstrap_modal_shortcode($atts) {
         }
         document.getElementById('consultingForm').addEventListener('submit', function(event) {
             event.preventDefault();
+            
             var formData = new FormData(this);
+            formData.append("action", "save_consulting_form");  // Append action properly
+
             fetch("<?php echo admin_url('admin-ajax.php'); ?>", {
                 method: "POST",
-                body: new URLSearchParams(formData) + "&action=save_consulting_form"
-            }).then(response => response.text()).then(data => {
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log("Server Response:", data); // Debugging
                 alert("Form submitted successfully!");
                 document.getElementById('consultingForm').reset();
-            }).catch(error => console.error("Error:", error));
+            })
+            .catch(error => console.error("Error:", error));
         });
+
     </script>
     <?php
     return ob_get_clean();
