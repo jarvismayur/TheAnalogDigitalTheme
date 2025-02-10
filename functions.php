@@ -1877,7 +1877,7 @@ function bootstrap_modal_shortcode($atts) {
     ob_start();
     ?>
     <!-- Button to trigger the modal -->
-     <div class="mx-auto text-center " style="postition:relative; z-index:1051">
+     <div class="mx-auto text-center " style="position:relative; z-index:1051">
          <button type="button" class="button primary" onclick="showModal()" id="modalBtn">
         Get Free Consulting 
     </button>
