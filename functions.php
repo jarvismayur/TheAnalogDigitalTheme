@@ -1877,9 +1877,11 @@ function bootstrap_modal_shortcode($atts) {
     ob_start();
     ?>
     <!-- Button to trigger the modal -->
+     <div class="mx-auto text-center">
     <button type="button" class="button primary" onclick="showModal()">
         Get Free Consulting 
     </button>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
