@@ -1877,8 +1877,8 @@ function bootstrap_modal_shortcode($atts) {
     ob_start();
     ?>
     <!-- Button to trigger the modal -->
-    <button type="button" class="btn btn-primary" onclick="showModal()">
-        Launch demo modal
+    <button type="button" class="button primary" onclick="showModal()">
+        Get Free Consulting 
     </button>
 
     <!-- Modal -->
@@ -1915,16 +1915,17 @@ function bootstrap_modal_shortcode($atts) {
                         <div class="mb-3">
                             <label for="course" class="form-label">Course Name</label>
                             <select class="form-control" id="course" name="course" required>
-                                <option value="Course A">Course A</option>
-                                <option value="Course B">Course B</option>
-                                <option value="Course C">Course C</option>
+                                <option value="Digital Marketing ">Digital Marketing</option>
+                                <option value="UI / UX Developer ">UI / UX Developer</option>
+                                <option value="Full Stack Developer (MERN)">Full Stack Developer (MERN)</option>
+                                <option value="Graphics Designing ">Graphics Designing </option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="button primary">Submit</button>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="button secondary" data-bs-dismiss="modal">Close</button>
                     
                 </div>
             </div>
@@ -2040,7 +2041,7 @@ function display_consulting_requests() {
     global $wpdb;
     $table_name = $wpdb->prefix . "consulting_requests";
     $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY created_at DESC");
-    echo "<div class='wrap'><h2>Consulting Requests ".$table_name ."</h2><table class='widefat'><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Occupation</th><th>Course</th><th>Date</th></tr></thead><tbody>";
+    echo "<div class='wrap'><h2>Consulting Requests  </h2><table class='widefat'><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Occupation</th><th>Course</th><th>Date</th></tr></thead><tbody>";
     foreach ($results as $row) {
         echo "<tr><td>{$row->name}</td><td>{$row->email}</td><td>{$row->phone}</td><td>{$row->occupation}</td><td>{$row->course}</td><td>{$row->created_at}</td></tr>";
     }
