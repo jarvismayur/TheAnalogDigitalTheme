@@ -1900,6 +1900,10 @@ function bootstrap_modal_shortcode($atts) {
                             <input type="email" class="form-control" id="email" required>
                         </div>
                         <div class="mb-3">
+                            <label for="email" class="form-label">Phone </label>
+                            <input type="email" class="form-control" id="phone" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="message" class="form-label">Message</label>
                             <textarea class="form-control" id="message" rows="3" required></textarea>
                         </div>
@@ -1908,7 +1912,7 @@ function bootstrap_modal_shortcode($atts) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    
                 </div>
             </div>
         </div>
@@ -1950,8 +1954,70 @@ function bootstrap_modal_shortcode($atts) {
                 document.body.style.overflow = "auto";
             });
         }
+        document.getElementById('consultingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            fetch("<?php echo admin_url('admin-ajax.php'); ?>", {
+                method: "POST",
+                body: new URLSearchParams(formData) + "&action=save_consulting_form"
+            }).then(response => response.text()).then(data => {
+                alert("Form submitted successfully!");
+                document.getElementById('consultingForm').reset();
+            }).catch(error => console.error("Error:", error));
+        });
     </script>
     <?php
     return ob_get_clean();
 }
 add_shortcode('bootstrap_modal', 'bootstrap_modal_shortcode');
+
+function create_consulting_table() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "consulting_requests";
+    $charset_collate = $wpdb->get_charset_collate();
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+        id MEDIUMINT(9) NOT NULL AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        message TEXT NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id)
+    ) $charset_collate;";
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+}
+register_activation_hook(__FILE__, 'create_consulting_table');
+
+function save_consulting_form() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "consulting_requests";
+    $wpdb->insert(
+        $table_name,
+        [
+            'name' => sanitize_text_field($_POST['name']),
+            'email' => sanitize_email($_POST['email']),
+            'message' => sanitize_textarea_field($_POST['message'])
+        ]
+    );
+    wp_die();
+}
+add_action('wp_ajax_save_consulting_form', 'save_consulting_form');
+add_action('wp_ajax_nopriv_save_consulting_form', 'save_consulting_form');
+
+function register_consulting_menu() {
+    add_menu_page("Consulting Requests", "Consulting Requests", "manage_options", "consulting-requests", "display_consulting_requests");
+}
+add_action("admin_menu", "register_consulting_menu");
+
+function display_consulting_requests() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "consulting_requests";
+    $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY created_at DESC");
+    echo "<div class='wrap'><h2>Consulting Requests</h2><table class='widefat'><thead><tr><th>Name</th><th>Email</th><th>Message</th><th>Date</th></tr></thead><tbody>";
+    foreach ($results as $row) {
+        echo "<tr><td>{$row->name}</td><td>{$row->email}</td><td>{$row->message}</td><td>{$row->created_at}</td></tr>";
+    }
+    echo "</tbody></table></div>";
+}
