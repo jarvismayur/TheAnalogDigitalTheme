@@ -1948,7 +1948,7 @@ function bootstrap_modal_shortcode($atts) {
                 modalElement.style.display = "block";
                 modalElement.style.opacity = "1";
                 modalElement.style.visibility = "visible";
-                modelElement.style.height = "auto"
+                modalElement.style.height = "auto"
 
                 backdropElement.className = "modal-backdrop fade show";
                 backdropElement.style.opacity = "0.5";
