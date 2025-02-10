@@ -2032,7 +2032,7 @@ function display_consulting_requests() {
     global $wpdb;
     $table_name = $wpdb->prefix . "consulting_requests";
     $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY created_at DESC");
-    echo "<div class='wrap'><h2>Consulting Requests</h2><table class='widefat'><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Occupation</th><th>Course</th><th>Date</th></tr></thead><tbody>";
+    echo "<div class='wrap'><h2>Consulting Requests ".$table_name ."</h2><table class='widefat'><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Occupation</th><th>Course</th><th>Date</th></tr></thead><tbody>";
     foreach ($results as $row) {
         echo "<tr><td>{$row->name}</td><td>{$row->email}</td><td>{$row->phone}</td><td>{$row->occupation}</td><td>{$row->course}</td><td>{$row->created_at}</td></tr>";
     }
