@@ -1878,7 +1878,7 @@ function bootstrap_modal_shortcode($atts) {
     ?>
     <!-- Button to trigger the modal -->
     <button type="button" class="btn btn-primary" onclick="showModal()">
-        Launch demo modal
+        Get Free Consulting
     </button>
 
     <!-- Modal -->
@@ -1886,33 +1886,42 @@ function bootstrap_modal_shortcode($atts) {
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal Title</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Get Free Consulting</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                   <form id="consultingForm">
+                    <form id="consultingForm">
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" required>
+                            <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" required>
+                            <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Phone </label>
-                            <input type="email" class="form-control" id="phone" required>
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" required>
                         </div>
                         <div class="mb-3">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="3" required></textarea>
+                            <label for="occupation" class="form-label">Occupation</label>
+                            <select class="form-control" id="occupation" name="occupation" required>
+                                <option value="Student">Student</option>
+                                <option value="Professional">Professional</option>
+                                <option value="Entrepreneur">Entrepreneur</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="course" class="form-label">Course Name</label>
+                            <select class="form-control" id="course" name="course" required>
+                                <option value="Course A">Course A</option>
+                                <option value="Course B">Course B</option>
+                                <option value="Course C">Course C</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    
                 </div>
             </div>
         </div>
@@ -1921,45 +1930,19 @@ function bootstrap_modal_shortcode($atts) {
     <script>
         function showModal() {
             var modalElement = document.getElementById('exampleModalCenter');
-            var backdropElement = document.createElement("div");
-
             var modal = new bootstrap.Modal(modalElement, {
                 backdrop: true,
                 keyboard: true
             });
-
             modal.show();
-
-            setTimeout(() => {
-                modalElement.style.display = "block";
-                modalElement.style.opacity = "1";
-                modalElement.style.visibility = "visible";
-
-                backdropElement.className = "modal-backdrop fade show";
-                backdropElement.style.opacity = "0.5";
-                document.body.appendChild(backdropElement);
-
-                document.body.style.overflow = "hidden";
-            }, 100);
-
-            modalElement.addEventListener("hidden.bs.modal", function () {
-                modalElement.style.display = "none";
-                modalElement.style.opacity = "0";
-                modalElement.style.visibility = "hidden";
-
-                if (backdropElement) {
-                    backdropElement.remove();
-                }
-
-                document.body.style.overflow = "auto";
-            });
         }
+
         document.getElementById('consultingForm').addEventListener('submit', function(event) {
             event.preventDefault();
             var formData = new FormData(this);
             fetch("<?php echo admin_url('admin-ajax.php'); ?>", {
                 method: "POST",
-                body: new URLSearchParams(formData) + "&action=save_consulting_form"
+                body: new URLSearchParams([...formData]) + "&action=save_consulting_form"
             }).then(response => response.text()).then(data => {
                 alert("Form submitted successfully!");
                 document.getElementById('consultingForm').reset();
@@ -1980,7 +1963,9 @@ function create_consulting_table() {
         id MEDIUMINT(9) NOT NULL AUTO_INCREMENT,
         name VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL,
-        message TEXT NOT NULL,
+        phone VARCHAR(20) NOT NULL,
+        occupation VARCHAR(100) NOT NULL,
+        course VARCHAR(255) NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     ) $charset_collate;";
@@ -1998,7 +1983,9 @@ function save_consulting_form() {
         [
             'name' => sanitize_text_field($_POST['name']),
             'email' => sanitize_email($_POST['email']),
-            'message' => sanitize_textarea_field($_POST['message'])
+            'phone' => sanitize_text_field($_POST['phone']),
+            'occupation' => sanitize_text_field($_POST['occupation']),
+            'course' => sanitize_text_field($_POST['course'])
         ]
     );
     wp_die();
@@ -2015,9 +2002,9 @@ function display_consulting_requests() {
     global $wpdb;
     $table_name = $wpdb->prefix . "consulting_requests";
     $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY created_at DESC");
-    echo "<div class='wrap'><h2>Consulting Requests</h2><table class='widefat'><thead><tr><th>Name</th><th>Email</th><th>Message</th><th>Date</th></tr></thead><tbody>";
+    echo "<div class='wrap'><h2>Consulting Requests</h2><table class='widefat'><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Occupation</th><th>Course</th><th>Date</th></tr></thead><tbody>";
     foreach ($results as $row) {
-        echo "<tr><td>{$row->name}</td><td>{$row->email}</td><td>{$row->message}</td><td>{$row->created_at}</td></tr>";
+        echo "<tr><td>{$row->name}</td><td>{$row->email}</td><td>{$row->phone}</td><td>{$row->occupation}</td><td>{$row->course}</td><td>{$row->created_at}</td></tr>";
     }
     echo "</tbody></table></div>";
 }
