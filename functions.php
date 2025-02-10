@@ -1887,7 +1887,7 @@ function bootstrap_modal_shortcode($atts) {
             <div class="modal-content">
                 <div class="modal-header ">
                     <h5 class="h5 text-white" id="exampleModalLongTitle">Get Free Consulting </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="consultingForm">
