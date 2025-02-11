@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll(".section-container:not(.modal)");
+    const sections = document.querySelectorAll(".section-container");
 
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
-                if (!entry.target.classList.contains(".modal")) {  // Ensure modals aren't affected
+                // Check if the entry is a modal itself OR contains a modal
+                if (!entry.target.closest(".modal")) {
                     if (entry.isIntersecting) {
                         entry.target.classList.add("animate-in");
                         entry.target.classList.remove("animate-out");
@@ -15,13 +16,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         },
-        { threshold: 0.4 } // Adjust the threshold as needed
+        { threshold: 0.4 }
     );
 
     sections.forEach((section) => {
         observer.observe(section);
     });
 });
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
