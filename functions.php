@@ -2052,3 +2052,174 @@ function display_consulting_requests() {
     }
     echo "</tbody></table></div>";
 }
+
+
+function get_download_brochure_btn_shortcode($atts) {
+    ob_start();
+    ?>
+    <!-- Button to trigger the modal -->
+    <div class="mx-auto text-center">
+        <button type="button" class="button primary" onclick="showBrochureModal()" id="brochureModalBtn" style="position:relative; z-index:1051">
+            Download Brochure
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="brochureModal" tabindex="-1" aria-labelledby="brochureModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="h5 text-white">Download Brochure</h5>
+                    <button type="button" class="btn-close" style="filter: invert(1) brightness(200%);" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="brochureForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="course" class="form-label">Select Course</label>
+                            <select class="form-control" id="course" name="course" required>
+                                <option value="Digital Marketing">Digital Marketing</option>
+                                <option value="UI / UX Developer">UI / UX Developer</option>
+                                <option value="Full Stack Developer (MERN)">Full Stack Developer (MERN)</option>
+                                <option value="Graphics Designing">Graphics Designing</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="button primary">Download</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showBrochureModal() {
+            var modalElement = document.getElementById('brochureModal');
+            var backdropElement = document.createElement("div");
+            var modalBtn = document.getElementById('brochureModalBtn');
+
+
+            var modal = new bootstrap.Modal(modalElement, {
+                backdrop: true,
+                keyboard: true
+            });
+
+            modal.show();
+
+            setTimeout(() => {
+                modalElement.style.display = "block";
+                modalElement.style.opacity = "1";
+                modalElement.style.visibility = "visible";
+                modalElement.style.height = "auto"
+                modalBtn.style.zIndex  = "-1";
+
+                backdropElement.className = "modal-backdrop fade show";
+                backdropElement.style.opacity = "0.5";
+                document.body.appendChild(backdropElement);
+
+                document.body.style.overflow = "hidden";
+            }, 100);
+
+            modalElement.addEventListener("hidden.bs.modal", function () {
+                modalElement.style.display = "none";
+                modalElement.style.opacity = "0";
+                modalElement.style.visibility = "hidden";
+                modalBtn.style.zIndex  = "1051";
+
+                if (backdropElement) {
+                    backdropElement.remove();
+                }
+
+                document.body.style.overflow = "auto";
+            });
+        }
+
+
+        document.getElementById('brochureForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var formData = new FormData(this);
+            formData.append("action", "save_brochure_form");
+
+            fetch("<?php echo admin_url('admin-ajax.php'); ?>", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log("Server Response:", data);
+                alert("Form submitted successfully! Your brochure will start downloading.");
+                document.getElementById('brochureForm').reset();
+                window.location.href = "<?php echo site_url('/wp-content/uploads/brochure.pdf'); ?>"; // Change to actual brochure URL
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('get_download_brochure_btn', 'get_download_brochure_btn_shortcode');
+
+function create_brochure_table() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "brochure_requests";
+    $charset_collate = $wpdb->get_charset_collate();
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+        id MEDIUMINT(9) NOT NULL AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        phone VARCHAR(20) NOT NULL,
+        course VARCHAR(255) NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id)
+    ) $charset_collate;";
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+}
+register_activation_hook(__FILE__, 'create_brochure_table');
+
+function save_brochure_form() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "brochure_requests";
+    $wpdb->insert(
+        $table_name,
+        [
+            'name' => sanitize_text_field($_POST['name']),
+            'email' => sanitize_email($_POST['email']),
+            'phone' => sanitize_text_field($_POST['phone']),
+            'course' => sanitize_text_field($_POST['course'])
+        ]
+    );
+    wp_die();
+}
+add_action('wp_ajax_save_brochure_form', 'save_brochure_form');
+add_action('wp_ajax_nopriv_save_brochure_form', 'save_brochure_form');
+
+function register_brochure_menu() {
+    add_menu_page("Brochure Requests", "Brochure Requests", "manage_options", "brochure-requests", "display_brochure_requests");
+}
+add_action("admin_menu", "register_brochure_menu");
+
+function display_brochure_requests() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "brochure_requests";
+    $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY created_at DESC");
+    echo "<div class='wrap'><h2>Brochure Requests</h2><table class='widefat'><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Course</th><th>Date</th></tr></thead><tbody>";
+    foreach ($results as $row) {
+        echo "<tr><td>{$row->name}</td><td>{$row->email}</td><td>{$row->phone}</td><td>{$row->course}</td><td>{$row->created_at}</td></tr>";
+    }
+    echo "</tbody></table></div>";
+}
+
