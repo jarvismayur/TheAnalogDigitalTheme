@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
-                if (!entry.target.classList.contains("modal")) {  // Ensure modals aren't affected
+                if (!entry.target.classList.contains(".modal")) {  // Ensure modals aren't affected
                     if (entry.isIntersecting) {
                         entry.target.classList.add("animate-in");
                         entry.target.classList.remove("animate-out");
