@@ -1873,7 +1873,7 @@ function load_custom_sitemap() {
 add_action('template_redirect', 'load_custom_sitemap');
 
 
-function bootstrap_modal_shortcode($atts) {
+function get_free_consulting_btn_shortcode($atts) {
     ob_start();
     ?>
     <!-- Button to trigger the modal -->
@@ -1996,7 +1996,7 @@ function bootstrap_modal_shortcode($atts) {
     <?php
     return ob_get_clean();
 }
-add_shortcode('get_free_consulting_btn', 'bootstrap_modal_shortcode');
+add_shortcode('get_free_consulting_btn', 'get_free_consulting_btn_shortcode');
 
 function create_consulting_table() {
     global $wpdb;
