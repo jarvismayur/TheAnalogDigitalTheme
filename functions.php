@@ -2055,6 +2055,15 @@ function display_consulting_requests() {
 
 
 function get_download_brochure_btn_shortcode($atts) {
+    $atts = shortcode_atts(
+        array(
+            'courses' => 'Course 1, Course 2, Course 3', // default courses
+            'form_title' => 'Download Broucher Form'
+        ), $atts, 'course_admission_form');
+    
+    // Split courses into an array
+    $courses = explode(',', $atts['courses']);
+    $form_title = $atts['form_title'];
     ob_start();
     ?>
     <!-- Button to trigger the modal -->
@@ -2069,7 +2078,7 @@ function get_download_brochure_btn_shortcode($atts) {
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="h5 text-white">Download Brochure</h5>
+                    <h5 class="h5 text-white"><?php echo $form_title; ?></h5>
                     <button type="button" class="btn-close" style="filter: invert(1) brightness(200%);" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -2088,11 +2097,10 @@ function get_download_brochure_btn_shortcode($atts) {
                         </div>
                         <div class="mb-3">
                             <label for="course" class="form-label">Select Course</label>
-                            <select class="form-control" id="course" name="course" required>
-                                <option value="Digital Marketing">Digital Marketing</option>
-                                <option value="UI / UX Developer">UI / UX Developer</option>
-                                <option value="Full Stack Developer (MERN)">Full Stack Developer (MERN)</option>
-                                <option value="Graphics Designing">Graphics Designing</option>
+                            <select class="form-control" id="course" name="course" required disabled>
+                                <?php foreach ($courses as $course): ?>
+                                    <option value="<?php echo esc_attr(trim($course)); ?>"><?php echo esc_html(trim($course)); ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <button type="submit" class="button primary">Download</button>
