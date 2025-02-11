@@ -2324,7 +2324,7 @@ function create_course_application_table() {
 }
 register_activation_hook(__FILE__, 'create_course application_table');
 
-function save_course application_form() {
+function save_course_application_form() {
     global $wpdb;
     $table_name = $wpdb->prefix . "course application_requests";
     $wpdb->insert(
