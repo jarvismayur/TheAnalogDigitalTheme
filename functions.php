@@ -2292,6 +2292,7 @@ function get_apply_for_course_btn_shortcode($atts) {
                 modalElement.style.opacity = "1";
                 modalElement.style.visibility = "visible";
                 modalElement.style.height = "auto"
+                modalElement.style.zIndex = "1053";
                 modalBtn.style.zIndex  = "-1";
 
                 backdropElement.className = "modal-backdrop fade show";
