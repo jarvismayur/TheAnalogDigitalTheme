@@ -2059,7 +2059,7 @@ function get_download_brochure_btn_shortcode($atts) {
     ?>
     <!-- Button to trigger the modal -->
     <div class="mx-auto text-center">
-        <button type="button" class="button primary" onclick="showBrochureModal()" id="brochureModalBtn" style="position:relative; z-index:1051">
+        <button type="button" class="button primary" onclick="showBrochureModal()" id="brochureModalBtn" style="position:relative; z-index:0">
             Download Brochure
         </button>
     </div>
@@ -2231,7 +2231,7 @@ function get_apply_for_course_btn_shortcode($atts) {
     ?>
     <!-- Button to trigger the modal -->
     <div class="mx-auto text-center">
-        <button type="button" class="button primary" onclick="showBrochureModalApply()" id="courseApplicationModalBtn" style="position:relative; z-index:1051">
+        <button type="button" class="button primary" onclick="showBrochureModalApply()" id="courseApplicationModalBtn" style="position:relative; z-index:0">
             Apply for the Course
         </button>
     </div>
@@ -2294,9 +2294,11 @@ function get_apply_for_course_btn_shortcode($atts) {
                 modalElement.style.height = "auto"
                 modalBtn.style.zIndex  = "-1";
 
+                backdropElement.className = "modal-backdrop fade show";
+                backdropElement.style.opacity = "0.5";
+                backdropElement.style.zIndex = "1";
                 
-                
-                
+                document.body.appendChild(backdropElement);
 
                 document.body.style.overflow = "hidden";
             }, 100);
@@ -2306,7 +2308,7 @@ function get_apply_for_course_btn_shortcode($atts) {
                 modalElement.style.opacity = "0";
                 modalElement.style.visibility = "hidden";
                 modalBtn.style.zIndex  = "1051";
-                
+                backdropElement.style.zIndex = "-1";
 
                 if (backdropElement) {
                     backdropElement.remove();
