@@ -2270,7 +2270,7 @@ function get_apply_for_course_btn_shortcode($atts) {
                         </div>
                         <div class="mb-3">
                             <label for="course" class="form-label">Select Course</label>
-                            <select class="form-control" id="course" name="course" required>
+                            <select class="form-control" id="course" name="course" required disabled>
                                 <?php foreach ($courses as $course): ?>
                                     <option value="<?php echo esc_attr(trim($course)); ?>"><?php echo esc_html(trim($course)); ?></option>
                                 <?php endforeach; ?>
