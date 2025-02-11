@@ -1,16 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
     const sections = document.querySelectorAll(".section-container:not(.modal)");
 
-
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("animate-in");
-                    entry.target.classList.remove("animate-out");
-                } else {
-                    entry.target.classList.add("animate-out");
-                    entry.target.classList.remove("animate-in");
+                if (!entry.target.classList.contains("modal")) {  // Ensure modals aren't affected
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("animate-in");
+                        entry.target.classList.remove("animate-out");
+                    } else {
+                        entry.target.classList.add("animate-out");
+                        entry.target.classList.remove("animate-in");
+                    }
                 }
             });
         },
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         observer.observe(section);
     });
 });
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const toggler = document.getElementById('navbar-toggler');
