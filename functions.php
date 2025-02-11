@@ -2103,47 +2103,28 @@ function get_download_brochure_btn_shortcode($atts) {
     </div>
 
     <script>
-        function showBrochureModal() {
-            var modalElement = document.getElementById('brochureModal');
-            var backdropElement = document.createElement("div");
-            var modalBtn = document.getElementById('brochureModalBtn');
-
+        function showBrochureModalApply() {
+            var modalElement = document.getElementById('courseApplicationModal');
+            var modalBtn = document.getElementById('courseApplicationModalBtn');
 
             var modal = new bootstrap.Modal(modalElement, {
-                backdrop: true,
-                keyboard: true
+                keyboard: true,
+                backdrop: "static" // Prevents accidental closure when clicking outside
             });
 
             modal.show();
 
             setTimeout(() => {
-                modalElement.style.display = "block";
-                modalElement.style.opacity = "1";
-                modalElement.style.visibility = "visible";
-                modalElement.style.height = "auto"
-                modalBtn.style.zIndex  = "-1";
-
-                backdropElement.className = "modal-backdrop fade show";
-                backdropElement.style.opacity = "0.5";
-                
-                document.body.appendChild(backdropElement);
-
+                modalBtn.style.zIndex = "-1"; // Hide button when modal is open
                 document.body.style.overflow = "hidden";
             }, 100);
 
             modalElement.addEventListener("hidden.bs.modal", function () {
-                modalElement.style.display = "none";
-                modalElement.style.opacity = "0";
-                modalElement.style.visibility = "hidden";
-                modalBtn.style.zIndex  = "1051";
-
-                if (backdropElement) {
-                    backdropElement.remove();
-                }
-
-                document.body.style.overflow = "auto";
+                modalBtn.style.zIndex = "1051";
+                document.body.style.overflow = "auto"; // Restore scrolling
             });
         }
+
 
 
         document.getElementById('brochureForm').addEventListener('submit', function(event) {
@@ -2275,46 +2256,24 @@ function get_apply_for_course_btn_shortcode($atts) {
     </div>
 
     <script>
-        function showBrochureModalApply() {
-            var modalElement = document.getElementById('courseApplicationModal');
-            var backdropElement = document.createElement("div");
-            var modalBtn = document.getElementById('courseApplicationModalBtn');
-
+        function showBrochureModal() {
+            var modalElement = document.getElementById('brochureModal');
+            var modalBtn = document.getElementById('brochureModalBtn');
 
             var modal = new bootstrap.Modal(modalElement, {
-                keyboard: true
+                keyboard: true,
+                backdrop: "static"
             });
 
             modal.show();
 
             setTimeout(() => {
-                modalElement.style.display = "block";
-                modalElement.style.opacity = "1";
-                modalElement.style.visibility = "visible";
-                modalElement.style.height = "auto"
-                modalElement.style.zIndex = "1053";
-                modalBtn.style.zIndex  = "-1";
-
-                backdropElement.className = "modal-backdrop fade show";
-                backdropElement.style.opacity = "0.5";
-                backdropElement.style.zIndex = "1";
-                
-                document.body.appendChild(backdropElement);
-
+                modalBtn.style.zIndex = "-1";
                 document.body.style.overflow = "hidden";
             }, 100);
 
             modalElement.addEventListener("hidden.bs.modal", function () {
-                modalElement.style.display = "none";
-                modalElement.style.opacity = "0";
-                modalElement.style.visibility = "hidden";
-                modalBtn.style.zIndex  = "1051";
-                backdropElement.style.zIndex = "-1";
-
-                if (backdropElement) {
-                    backdropElement.remove();
-                }
-
+                modalBtn.style.zIndex = "1051";
                 document.body.style.overflow = "auto";
             });
         }
