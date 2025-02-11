@@ -2276,9 +2276,9 @@ function get_apply_for_course_btn_shortcode($atts) {
 
     <script>
         function showBrochureModalApply() {
-            var modalElement = document.getElementById('brochureModal');
+            var modalElement = document.getElementById('courseApplicationModal');
             var backdropElement = document.createElement("div");
-            var modalBtn = document.getElementById('brochureModalBtn');
+            var modalBtn = document.getElementById('courseApplicationModalBtn');
 
 
             var modal = new bootstrap.Modal(modalElement, {
