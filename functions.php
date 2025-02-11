@@ -1926,10 +1926,7 @@ function bootstrap_modal_shortcode($atts) {
                         <button type="submit" class="button primary">Submit</button>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="button secondary" data-bs-dismiss="modal">Close</button>
-                    
-                </div>
+                
             </div>
         </div>
     </div>
