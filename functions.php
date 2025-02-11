@@ -2294,11 +2294,9 @@ function get_apply_for_course_btn_shortcode($atts) {
                 modalElement.style.height = "auto"
                 modalBtn.style.zIndex  = "-1";
 
-                backdropElement.className = "modal-backdrop fade show";
-                backdropElement.style.opacity = "0.5";
-                backdropElement.style.zIndex = "1";
                 
-                document.body.appendChild(backdropElement);
+                
+                
 
                 document.body.style.overflow = "hidden";
             }, 100);
@@ -2308,7 +2306,7 @@ function get_apply_for_course_btn_shortcode($atts) {
                 modalElement.style.opacity = "0";
                 modalElement.style.visibility = "hidden";
                 modalBtn.style.zIndex  = "1051";
-                backdropElement.style.zIndex = "-1";
+                
 
                 if (backdropElement) {
                     backdropElement.remove();
