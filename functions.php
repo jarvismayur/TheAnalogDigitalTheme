@@ -2231,13 +2231,13 @@ function get_apply_for_course_btn_shortcode($atts) {
     ?>
     <!-- Button to trigger the modal -->
     <div class="mx-auto text-center">
-        <button type="button" class="button primary" onclick="showBrochureModalApply()" id="course applicationModalBtn" style="position:relative; z-index:1051">
+        <button type="button" class="button primary" onclick="showBrochureModalApply()" id="courseApplicationModalBtn" style="position:relative; z-index:1051">
             Apply for the Course
         </button>
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="course applicationModal" tabindex="-1" aria-labelledby="course applicationModalTitle" aria-hidden="true">
+    <div class="modal fade" id="courseApplicationModal" tabindex="-1" aria-labelledby="courseApplicationModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -2245,7 +2245,7 @@ function get_apply_for_course_btn_shortcode($atts) {
                     <button type="button" class="btn-close" style="filter: invert(1) brightness(200%);" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="course applicationForm">
+                    <form id="courseApplicationForm">
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" name="name" required>
@@ -2267,7 +2267,7 @@ function get_apply_for_course_btn_shortcode($atts) {
                                 <option value="Graphics Designing">Graphics Designing</option>
                             </select>
                         </div>
-                        <button type="submit" class="button primary">Download</button>
+                        <button type="submit" class="button primary">Apply</button>
                     </form>
                 </div>
             </div>
@@ -2276,16 +2276,52 @@ function get_apply_for_course_btn_shortcode($atts) {
 
     <script>
         function showBrochureModalApply() {
-            var modalElement = document.getElementById('course applicationModal');
-            var modal = new bootstrap.Modal(modalElement, { backdrop: true, keyboard: true });
+            var modalElement = document.getElementById('brochureModal');
+            var backdropElement = document.createElement("div");
+            var modalBtn = document.getElementById('brochureModalBtn');
+
+
+            var modal = new bootstrap.Modal(modalElement, {
+                backdrop: true,
+                keyboard: true
+            });
+
             modal.show();
+
+            setTimeout(() => {
+                modalElement.style.display = "block";
+                modalElement.style.opacity = "1";
+                modalElement.style.visibility = "visible";
+                modalElement.style.height = "auto"
+                modalBtn.style.zIndex  = "-1";
+
+                backdropElement.className = "modal-backdrop fade show";
+                backdropElement.style.opacity = "0.5";
+                
+                document.body.appendChild(backdropElement);
+
+                document.body.style.overflow = "hidden";
+            }, 100);
+
+            modalElement.addEventListener("hidden.bs.modal", function () {
+                modalElement.style.display = "none";
+                modalElement.style.opacity = "0";
+                modalElement.style.visibility = "hidden";
+                modalBtn.style.zIndex  = "1051";
+
+                if (backdropElement) {
+                    backdropElement.remove();
+                }
+
+                document.body.style.overflow = "auto";
+            });
         }
 
-        document.getElementById('course applicationForm').addEventListener('submit', function(event) {
+        document.getElementById('courseApplicationForm').addEventListener('submit', function(event) {
             event.preventDefault();
             
             var formData = new FormData(this);
-            formData.append("action", "save_course application_form");
+            formData.append("action", "save_course_application_form");
 
             fetch("<?php echo admin_url('admin-ajax.php'); ?>", {
                 method: "POST",
@@ -2294,7 +2330,7 @@ function get_apply_for_course_btn_shortcode($atts) {
             .then(response => response.text())
             .then(data => {
                 console.log("Server Response:", data);
-                alert("Form submitted successfully! Your course application will start downloading.");
+                alert("Form submitted successfully! Your course application has been received.");
             })
             .catch(error => console.error("Error:", error));
         });
@@ -2306,7 +2342,7 @@ add_shortcode('get_apply_for_course_btn', 'get_apply_for_course_btn_shortcode');
 
 function create_course_application_table() {
     global $wpdb;
-    $table_name = $wpdb->prefix . "course application_requests";
+    $table_name = $wpdb->prefix . "course_application_requests";
     $charset_collate = $wpdb->get_charset_collate();
 
     $sql = "CREATE TABLE IF NOT EXISTS $table_name (
@@ -2322,11 +2358,12 @@ function create_course_application_table() {
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
 }
-register_activation_hook(__FILE__, 'create_course application_table');
+register_activation_hook(__FILE__, 'create_course_application_table');
 
 function save_course_application_form() {
     global $wpdb;
-    $table_name = $wpdb->prefix . "course application_requests";
+    $table_name = $wpdb->prefix . "course_application_requests";
+
     $wpdb->insert(
         $table_name,
         [
@@ -2338,19 +2375,20 @@ function save_course_application_form() {
     );
     wp_die();
 }
-add_action('wp_ajax_save_course application_form', 'save_course application_form');
-add_action('wp_ajax_nopriv_save_course application_form', 'save_course application_form');
+add_action('wp_ajax_save_course_application_form', 'save_course_application_form');
+add_action('wp_ajax_nopriv_save_course_application_form', 'save_course_application_form');
 
 function register_course_application_menu() {
-    add_menu_page("Brochure Requests", "Brochure Requests", "manage_options", "course application-requests", "display_course application_requests");
+    add_menu_page("Course Applications", "Course Applications", "manage_options", "course-application-requests", "display_course_application_requests");
 }
-add_action("admin_menu", "register_course application_menu");
+add_action("admin_menu", "register_course_application_menu");
 
 function display_course_application_requests() {
     global $wpdb;
-    $table_name = $wpdb->prefix . "course application_requests";
+    $table_name = $wpdb->prefix . "course_application_requests";
     $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY created_at DESC");
-    echo "<div class='wrap'><h2>Brochure Requests</h2><table class='widefat'><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Course</th><th>Date</th></tr></thead><tbody>";
+
+    echo "<div class='wrap'><h2>Course Applications</h2><table class='widefat'><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Course</th><th>Date</th></tr></thead><tbody>";
     foreach ($results as $row) {
         echo "<tr><td>{$row->name}</td><td>{$row->email}</td><td>{$row->phone}</td><td>{$row->course}</td><td>{$row->created_at}</td></tr>";
     }
