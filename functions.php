@@ -2282,7 +2282,6 @@ function get_apply_for_course_btn_shortcode($atts) {
 
 
             var modal = new bootstrap.Modal(modalElement, {
-                backdrop: true,
                 keyboard: true
             });
 
