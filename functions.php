@@ -2297,7 +2297,7 @@ function get_apply_for_course_btn_shortcode($atts) {
 
                 backdropElement.className = "modal-backdrop fade show";
                 backdropElement.style.opacity = "0.5";
-                backdropElement.style.zIndex = "1000";
+                backdropElement.style.zIndex = "1";
                 
                 document.body.appendChild(backdropElement);
 
