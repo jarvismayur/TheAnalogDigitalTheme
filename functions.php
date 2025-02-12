@@ -1973,7 +1973,7 @@ function get_free_consulting_btn_shortcode($atts) {
                 modalElement.style.display = "none";
                 modalElement.style.opacity = "0";
                 modalElement.style.visibility = "hidden";
-                modalBtn.style.zIndex  = "1051";
+                modalBtn.style.zIndex  = "0";
 
                 if (backdropElement) {
                     backdropElement.remove();
@@ -2153,7 +2153,7 @@ function get_download_brochure_btn_shortcode($atts) {
                 modalElement.style.display = "none";
                 modalElement.style.opacity = "0";
                 modalElement.style.visibility = "hidden";
-                modalBtn.style.zIndex  = "1051";
+                modalBtn.style.zIndex  = "0";
 
                 if (backdropElement) {
                     backdropElement.remove();
@@ -2335,7 +2335,7 @@ function get_apply_for_course_btn_shortcode($atts) {
                 modalElement.style.display = "none";
                 modalElement.style.opacity = "0";
                 modalElement.style.visibility = "hidden";
-                modalBtn.style.zIndex  = "1051";
+                modalBtn.style.zIndex  = "0";
                 backdropElement.style.zIndex = "-1";
 
                 if (backdropElement) {
