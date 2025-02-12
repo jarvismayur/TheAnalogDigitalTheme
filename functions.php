@@ -2264,7 +2264,7 @@ function get_apply_for_course_btn_shortcode($atts) {
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="courseApplicationModal" tabindex="-1" aria-labelledby="courseApplicationModalTitle" aria-hidden="true" >
+    <div class="modal fade" id="courseApplicationModal" tabindex="-1" aria-labelledby="courseApplicationModalTitle" aria-hidden="true"style="z-index:-1;" >
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
