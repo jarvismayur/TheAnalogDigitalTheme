@@ -1143,7 +1143,7 @@ function owl_carousel_shortcode($atts) {
     // Check if 'items' is not empty and is an array
     if (!empty($atts['items'])) {
         $items = explode('|', $atts['items']); // Split items by pipe (|)
-        echo '<div id="courseslist"><div class="container mt-5"><div class="owl-carousel owl-theme desktop-only">';
+        echo '<div id="courseslist"><div class="container mt-5  d-none d-lg-block"><div class="owl-carousel owl-theme desktop-only">';
         
         // Loop through the items
         foreach ($items as $index => $item) {
