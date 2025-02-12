@@ -1412,15 +1412,15 @@ function companies_hiring_shortcode($atts) {
                 
          
         
-        <div class="row">
+        <div class="row text-center align-items-center">
             <?php 
             // Loop to display up to 6 images from the shortcode attributes
             for ($i = 1; $i <= 6; $i++) {
                 $image_url = $atts['image' . $i];
                 if ($image_url) {
                     ?>
-                    <div class="col-lg-2 col-6 mb-1">
-                        <img src="<?php echo esc_url($image_url); ?>" alt="Company Logo <?php echo $i; ?>" class="company-logo" />
+                    <div class="col-6 col-md-2 mb-3 d-flex justify-content-center align-items-center">
+                        <img src="<?php echo esc_url($image_url); ?>" alt="Company Logo <?php echo $i; ?>" class="img-fluid tools-logo p-2"  style="max-width: 161px; height: auto; flex-shrink: 0;" />
                     </div>
                     <?php
                 }
