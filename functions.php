@@ -1347,39 +1347,48 @@ function profile_card_shortcode($atts) {
     <div class="section-container">
     <p class="text-large-normal"><?php echo esc_html($atts['caption']); ?></p>
     <h2 class="h2"><?php echo esc_html($atts['heading']); ?></h2>
-    <div class="row">
-        <div class="col-lg-3 col-12">
-            <img src="<?php echo esc_url($atts['image']); ?>"  class="trainer-img" alt="">
-        </div>
-        <div class="col-lg-9 col-12">
-            <div class="row">
-                <div class="col-lg-6 col-12">
-                    <h2 class="h2"><?php echo esc_html($atts['name']); ?></h2>
-                    <p class="text-large-normal"><?php echo esc_html($atts['position']); ?></p>
-                </div>
-                <div class="col-lg-6 col-12 text-end">
-                    <?php if (!empty($atts['facebook'])): ?>
-                        <a href="<?php echo esc_url($atts['facebook']); ?>" class="me-3"><i class="bi bi-facebook text-dark"></i></a>
-                    <?php endif; ?>
-                    <?php if (!empty($atts['twitter'])): ?>
-                        <a href="<?php echo esc_url($atts['twitter']); ?>" class="me-3"><i class="bi bi-twitter text-dark"></i></a>
-                    <?php endif; ?>
-                    <?php if (!empty($atts['instagram'])): ?>
-                        <a href="<?php echo esc_url($atts['instagram']); ?>" class="me-3"><i class="bi bi-instagram text-dark"></i></a>
-                    <?php endif; ?>
-                    <?php if (!empty($atts['linkedin'])): ?>
-                        <a href="<?php echo esc_url($atts['linkedin']); ?>" class="me-3"><i class="bi bi-linkedin text-dark"></i></a>
-                    <?php endif; ?>
-                    <?php if (!empty($atts['youtube'])): ?>
-                        <a href="<?php echo esc_url($atts['youtube']); ?>"><i class="bi bi-youtube text-dark"></i></a>
-                    <?php endif; ?>
-                </div>
-            </div>
-            <p class="text-large-normal mt-4">
-                <?php echo esc_html($atts['description']); ?>
-            </p>
-        </div>
+    <div class="row align-items-center gy-4">
+    <!-- Image Section -->
+    <div class="col-md-4 col-12 text-center text-md-start">
+        <img src="<?php echo esc_url($atts['image']); ?>" class="trainer-img img-fluid rounded" alt="<?php echo esc_attr($atts['name']); ?>">
     </div>
+
+    <!-- Content Section -->
+    <div class="col-md-8 col-12">
+        <div class="row align-items-center">
+            <!-- Name & Position -->
+            <div class="col-md-6 col-12 text-center text-md-start">
+                <h2 class="h2 mb-1"><?php echo esc_html($atts['name']); ?></h2>
+                <p class="text-large-normal text-muted"><?php echo esc_html($atts['position']); ?></p>
+            </div>
+
+            <!-- Social Links -->
+            <div class="col-md-6 col-12 text-center text-md-end mt-2 mt-md-0">
+                <?php if (!empty($atts['facebook'])): ?>
+                    <a href="<?php echo esc_url($atts['facebook']); ?>" class="me-2"><i class="bi bi-facebook text-dark fs-4"></i></a>
+                <?php endif; ?>
+                <?php if (!empty($atts['twitter'])): ?>
+                    <a href="<?php echo esc_url($atts['twitter']); ?>" class="me-2"><i class="bi bi-twitter text-dark fs-4"></i></a>
+                <?php endif; ?>
+                <?php if (!empty($atts['instagram'])): ?>
+                    <a href="<?php echo esc_url($atts['instagram']); ?>" class="me-2"><i class="bi bi-instagram text-dark fs-4"></i></a>
+                <?php endif; ?>
+                <?php if (!empty($atts['linkedin'])): ?>
+                    <a href="<?php echo esc_url($atts['linkedin']); ?>" class="me-2"><i class="bi bi-linkedin text-dark fs-4"></i></a>
+                <?php endif; ?>
+                <?php if (!empty($atts['youtube'])): ?>
+                    <a href="<?php echo esc_url($atts['youtube']); ?>"><i class="bi bi-youtube text-dark fs-4"></i></a>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <p class="text-large-normal mt-3 text-center text-md-start">
+            <?php echo esc_html($atts['description']); ?>
+        </p>
+    </div>
+</div>
+
     </div>
     <?php
     return ob_get_clean();
