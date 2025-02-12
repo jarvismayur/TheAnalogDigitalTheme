@@ -2074,7 +2074,7 @@ function get_download_brochure_btn_shortcode($atts) {
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="brochureModal" tabindex="-1" aria-labelledby="brochureModalTitle" aria-hidden="true">
+    <div class="modal fade" id="brochureModal" tabindex="-1" aria-labelledby="brochureModalTitle" aria-hidden="true" style="z-index:-1;">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
