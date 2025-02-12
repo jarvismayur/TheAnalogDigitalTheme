@@ -1959,6 +1959,7 @@ function get_free_consulting_btn_shortcode($atts) {
                 modalElement.style.opacity = "1";
                 modalElement.style.visibility = "visible";
                 modalElement.style.height = "auto"
+                modalElement.style.zIndex  = "1052";
                 modalBtn.style.zIndex  = "-1";
 
                 backdropElement.className = "modal-backdrop fade show";
