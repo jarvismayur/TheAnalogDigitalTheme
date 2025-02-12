@@ -1886,7 +1886,7 @@ function get_free_consulting_btn_shortcode($atts) {
     ?>
     <!-- Button to trigger the modal -->
      <div class="mx-auto text-center " >
-         <button type="button" class="button primary" onclick="showModal()" id="modalBtn" style="position:relative; z-index:1051">
+         <button type="button" class="button primary" onclick="showModal()" id="modalBtn" style="position:relative; ">
         Get Free Consulting 
     </button>
     </div>
@@ -2076,7 +2076,7 @@ function get_download_brochure_btn_shortcode($atts) {
     ?>
     <!-- Button to trigger the modal -->
     <div class="mx-auto text-center">
-        <button type="button" class="button primary" onclick="showBrochureModal()" id="brochureModalBtn" style="position:relative; z-index:1050;">
+        <button type="button" class="button primary" onclick="showBrochureModal()" id="brochureModalBtn" style="position:relative; ">
             Download Brochure
         </button>
     </div>
@@ -2258,7 +2258,7 @@ function get_apply_for_course_btn_shortcode($atts) {
     ?>
     <!-- Button to trigger the modal -->
     <div class="mx-auto text-center">
-        <button type="button" class="button primary" onclick="showBrochureModalApply()" id="courseApplicationModalBtn" style="position:relative; z-index:0">
+        <button type="button" class="button primary" onclick="showBrochureModalApply()" id="courseApplicationModalBtn" style="position:relative; ">
             Apply for the Course
         </button>
     </div>
