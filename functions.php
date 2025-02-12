@@ -2068,7 +2068,7 @@ function get_download_brochure_btn_shortcode($atts) {
     ?>
     <!-- Button to trigger the modal -->
     <div class="mx-auto text-center">
-        <button type="button" class="button primary" onclick="showBrochureModal()" id="brochureModalBtn" style="position:relative; z-index:0">
+        <button type="button" class="button primary" onclick="showBrochureModal()" id="brochureModalBtn" style="position:relative; z-index:-1">
             Download Brochure
         </button>
     </div>
