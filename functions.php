@@ -1294,7 +1294,7 @@ function tools_covered_shortcode($atts) {
         <div class="row text-center align-items-center">
             <?php foreach ($tools as $tool) : ?>
                 <div class="col-6 col-md-2 mb-3 d-flex justify-content-center align-items-center">
-                    <img src="<?php echo esc_attr(trim($tool)); ?>" alt="" class="img-fluid tools-logo p-2"  style="aspect-ratio: 1 / 1; max-width: 100px; height: auto;" />
+                    <img src="<?php echo esc_attr(trim($tool)); ?>" alt="" class="img-fluid tools-logo p-2"  style="max-width: 161px; height: auto; flex-shrink: 0;" />
                 </div>
             <?php endforeach; ?>
         </div>
