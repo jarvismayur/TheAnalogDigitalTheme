@@ -49,27 +49,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <!-- Logo -->
                 <div class="site-branding d-flex align-items-center">
                     <div class="site-logo">
-                            <?php 
-                                if (has_custom_logo()) {
-                                    // Display the logo with the custom size
-                                    the_custom_logo();
-                                } else {
-                                    // Fallback logo if no custom logo is set
-                                    echo '<img src="' . get_template_directory_uri() . '/assets/images/default-logo.png" alt="Site Logo">';
-                                }
-                            ?>
-                            </div>
+                        <?php 
+                            if (has_custom_logo()) {
+                                // Display the custom logo
+                                the_custom_logo();
+                            } else {
+                                // Fallback logo if no custom logo is set
+                                echo '<img src="' . get_template_directory_uri() . '/assets/images/default-logo.png" alt="Site Logo">';
+                            }
+                        ?>
+                    </div>
 
                     <div class="site-title-description d-none d-lg-block">
-                        <h1 class="site-title mb-0">
-                            <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-                                <?php bloginfo('name'); ?>
-                            </a>
-                        </h1>
+                        <?php if (!has_custom_logo()) : ?>
+                            <h1 class="site-title mb-0">
+                                <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+                                    <?php bloginfo('name'); ?>
+                                </a>
+                            </h1>
+                        <?php endif; ?>
+                        
                         <p class="site-description mb-0">
                             <?php bloginfo('description'); ?>
                         </p>
                     </div>
+
                 </div>
 
                <!-- Navigation -->
