@@ -28,10 +28,19 @@
             </td>
         </tr>
         <tr>
-            <th><label for="testimonial_page_id">Page ID</label></th>
+            <th><label for="testimonial_page_id">Linked Page</label></th>
             <td>
-                <input type="number" name="testimonial_page_id" id="testimonial_page_id" value="<?php echo isset($testimonial->page_id) ? esc_attr($testimonial->page_id) : ''; ?>">
-                <p class="description">Enter the Page ID if this testimonial is linked to a specific page.</p>
+                <select name="testimonial_page_id" id="testimonial_page_id">
+                    <option value="">-- Select a Page --</option>
+                    <?php
+                    $pages = get_pages(); // Fetch all pages
+                    foreach ($pages as $page) {
+                        $selected = isset($testimonial->page_id) && $testimonial->page_id == $page->ID ? 'selected' : '';
+                        echo '<option value="' . esc_attr($page->ID) . '" ' . $selected . '>' . esc_html($page->post_title) . '</option>';
+                    }
+                    ?>
+                </select>
+                <p class="description">Select the page this testimonial is related to.</p>
             </td>
         </tr>
         <tr>
@@ -52,4 +61,3 @@
         <input type="submit" name="save_testimonial" id="save_testimonial" class="button button-primary" value="Save Changes">
     </p>
 </form>
-
