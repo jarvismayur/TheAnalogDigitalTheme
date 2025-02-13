@@ -618,7 +618,7 @@ function testimonial_admin_page() {
     $table_name = $wpdb->prefix . 'testimonials';
 
     // Handle Add/Edit Form Submission
-    if (isset($_POST['save_testimonial']) && check_admin_referer('save_testimonial_action', 'save_testimonial_nonce')) {
+    if (isset($_POST['save_testimonial']) && check_admin_referer('save_testimonial_action')) {
         $name = sanitize_text_field($_POST['testimonial_name']);
         $rating = intval($_POST['testimonial_rating']);
         $description = sanitize_textarea_field($_POST['testimonial_description']);
