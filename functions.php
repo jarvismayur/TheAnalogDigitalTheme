@@ -728,14 +728,26 @@ function display_testimonials_shortcode($atts) {
     $heading = esc_html($atts['heading']);
     $subheading = esc_html($atts['subheading']);
 
-    // Fetch testimonials associated with the current page
+    // Fetch testimonials for the current page
     $testimonials = $wpdb->get_results(
         $wpdb->prepare(
-            "SELECT * FROM $table_name WHERE status = 'approved' AND (page_id = %d OR page_id = 0) ORDER BY created_at DESC LIMIT %d",
-            $current_page_id, 
-            $count
+            "SELECT * FROM $table_name WHERE status = 'approved' AND page_id = %d ORDER BY created_at DESC",
+            $current_page_id
         )
     );
+
+    // If no specific testimonials for this page, fetch global ones
+    if (empty($testimonials)) {
+        $testimonials = $wpdb->get_results(
+            "SELECT * FROM $table_name WHERE status = 'approved' AND page_id = 13 ORDER BY created_at DESC"
+        );
+    }
+
+    // If we have more testimonials than needed, select a random subset
+    if (count($testimonials) > $count) {
+        shuffle($testimonials);
+        $testimonials = array_slice($testimonials, 0, $count);
+    }
 
     // Start output buffering
     ob_start();
@@ -769,7 +781,7 @@ function display_testimonials_shortcode($atts) {
                             </div>
                         </div>
                         <div class="col-3 text-center">';
-            
+
             $image = !empty($testimonial->image) ? esc_url($testimonial->image) : 'https://via.placeholder.com/150';
             echo '<img src="' . $image . '" class="circular-image" alt="' . esc_html($testimonial->name) . '">
                         </div>
@@ -791,6 +803,7 @@ function display_testimonials_shortcode($atts) {
     return ob_get_clean();
 }
 add_shortcode('display_testimonials', 'display_testimonials_shortcode');
+
 
 
 // Register the contact form shortcode
