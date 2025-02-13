@@ -812,6 +812,8 @@ function custom_contact_form() {
     ob_start();
     ?>
     <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post" class="contact-form">
+        <h2 class="h2">Level Up your Skills !</h2>
+        <p class="text-large-normal">You can also reach us out at <a href="mailto:contact@theanalogdigital.in">contact@theanalogdigital.in</a>.</p>
     <div class="row">
         <div class="form-group col-md-6">
             <label for="name">Your Name</label>
