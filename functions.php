@@ -717,9 +717,12 @@ function testimonial_admin_page() {
 }
 
 
-// Shortcode to display testimonials with Owl Carousel
+// Shortcode to display testimonials with Owl Carousel based on the page
 function display_testimonials_shortcode($atts) {
     global $wpdb;
+
+    // Get the current page ID
+    $current_page_id = get_queried_object_id();
 
     // Parse shortcode attributes
     $atts = shortcode_atts([
@@ -733,79 +736,70 @@ function display_testimonials_shortcode($atts) {
     $heading = esc_html($atts['heading']);
     $subheading = esc_html($atts['subheading']);
 
-    // Fetch the latest approved testimonials
+    // Fetch testimonials associated with the current page
     $testimonials = $wpdb->get_results(
-        $wpdb->prepare("SELECT * FROM $table_name WHERE status = 'approved' ORDER BY created_at DESC LIMIT %d", $count)
+        $wpdb->prepare(
+            "SELECT * FROM $table_name WHERE status = 'approved' AND (page_id = %d OR page_id = 0) ORDER BY created_at DESC LIMIT %d",
+            $current_page_id, 
+            $count
+        )
     );
 
     // Start output buffering
     ob_start();
 
     if (!empty($testimonials)) {
-    // Add Owl Carousel wrapper
-    echo '<div  id="testimonials">
-       
-        <p class="text-large-normal "><em>' . $subheading . '</em></p>
-        <h2 class="h2 ">' . $heading . '</h2>
-       
-    <div class="owl-carousel owl-theme testimonial-carousel h-auto">';
+        echo '<div id="testimonials">
+            <p class="text-large-normal"><em>' . $subheading . '</em></p>
+            <h2 class="h2">' . $heading . '</h2>
+            <div class="owl-carousel owl-theme testimonial-carousel h-auto">';
 
-    foreach ($testimonials as $testimonial) {
-        echo '<div class="item border-none" >';
-        echo '<div class="card border-0 testimonial-card p-3 mb-4 shadow-medium bg-surface-light" style="border-radius:0px; border-top-left-radius: 25px; border-bottom-right-radius: 25px; min-height:180px;">'; // Set consistent height
+        foreach ($testimonials as $testimonial) {
+            echo '<div class="item border-none">
+                <div class="card border-0 testimonial-card p-3 mb-4 shadow-medium bg-surface-light" style="border-radius:0px; border-top-left-radius: 25px; border-bottom-right-radius: 25px; min-height:180px;">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="star-rating mb-2">';
 
-        // First Row: Star Rating, Name, Image
-        echo '<div class="row">';
-        echo '<div class="col-8">';
-        echo '<div class="row">';
-        echo '<div class="col-12">';
-        echo '<div class="star-rating mb-2">';
-
-        // Display stars based on the rating
-        for ($i = 1; $i <= 5; $i++) {
-            if ($i <= $testimonial->rating) {
-                echo '<span class="fa fa-star checked text-warning" style="max-height:23px; max-width:20px;"></span>';
-            } else {
-                echo '<span class="fa fa-star"></span>';
+            for ($i = 1; $i <= 5; $i++) {
+                echo ($i <= $testimonial->rating)
+                    ? '<span class="fa fa-star checked text-warning" style="max-height:23px; max-width:20px;"></span>'
+                    : '<span class="fa fa-star"></span>';
             }
+
+            echo '              </div>
+                                </div>
+                                <div class="col-12">
+                                    <h5 class="card-title mb-0">' . esc_html($testimonial->name) . '</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 text-center">';
+            
+            $image = !empty($testimonial->image) ? esc_url($testimonial->image) : 'https://via.placeholder.com/150';
+            echo '<img src="' . $image . '" class="circular-image" alt="' . esc_html($testimonial->name) . '">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <p class="card-text">' . esc_html($testimonial->description) . '</p>
+                        </div>
+                    </div>
+                </div>
+            </div>';
         }
 
-        echo '</div>'; // Close star-rating
-        echo '</div>';
-        echo '<div class="col-12">';
-        echo '<h5 class="card-title mb-0">' . esc_html($testimonial->name) . '</h5>';
-        echo '</div>';
-        echo '</div>'; // Close inner row
-        echo '</div>'; // Close col-md-9
-
-        // Display image
-        echo '<div class="col-3 text-center">';
-        $image = !empty($testimonial->image) ? esc_url($testimonial->image) : 'https://via.placeholder.com/150';
-        echo '<img src="' . $image . '" class="circular-image"   alt="' . esc_html($testimonial->name) . '">';
-        echo '</div>'; // Close col-md-3
-        echo '</div>'; // Close first row
-
-        // Second Row: Description
-        echo '<div class="row mt-3">';
-        echo '<div class="col-12">';
-        echo '<p class="card-text">' . esc_html($testimonial->description) . '</p>';
-        echo '</div>';
-        echo '</div>'; // Close second row
-
-        echo '</div>'; // Close card
-        echo '</div>'; // Close item
+        echo '</div></div></div><br>';
+    } else {
+        echo '<p>No testimonials available for this page.</p>';
     }
-
-    echo '</div></div></div> <br>'; // Close Owl Carousel wrapper
-} else {
-    echo '<p>No testimonials available at the moment.</p>';
-}
-	
-	
 
     return ob_get_clean();
 }
 add_shortcode('display_testimonials', 'display_testimonials_shortcode');
+
 
 // Register the contact form shortcode
 function custom_contact_form() {
