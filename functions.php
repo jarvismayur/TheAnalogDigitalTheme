@@ -2438,41 +2438,23 @@ function display_course_application_requests() {
 
 
 function custom_rewrite_rules() {
-    add_rewrite_rule('^courses/([^/]*)/?', 'index.php?post_type=courses&name=$matches[1]', 'top');
+    // Rewrite all blog posts to be under /blogs/
     add_rewrite_rule('^blogs/([^/]*)/?', 'index.php?post_type=post&name=$matches[1]', 'top');
 }
 add_action('init', 'custom_rewrite_rules');
 
 function custom_post_link($permalink, $post) {
-    if ($post->post_type == 'courses') {
-        return home_url('/courses/' . $post->post_name . '/');
-    } elseif ($post->post_type == 'post') {
+    // Ensure all posts are prefixed with /blogs/
+    if ($post->post_type === 'post') {
         return home_url('/blogs/' . $post->post_name . '/');
     }
     return $permalink;
 }
-add_filter('post_type_link', 'custom_post_link', 10, 2);
+add_filter('post_link', 'custom_post_link', 10, 2);
 
 function update_flush_rewrite_rules() {
     flush_rewrite_rules();
 }
 register_activation_hook(__FILE__, 'update_flush_rewrite_rules');
 register_deactivation_hook(__FILE__, 'update_flush_rewrite_rules');
-
-
-function custom_post_type_courses() {
-    register_post_type('courses',
-        array(
-            'labels'      => array(
-                'name'          => __('Courses'),
-                'singular_name' => __('Course'),
-            ),
-            'public'      => true,
-            'has_archive' => true,
-            'rewrite'     => array('slug' => 'courses'),
-            'supports'    => array('title', 'editor', 'thumbnail'),
-        )
-    );
-}
-add_action('init', 'custom_post_type_courses');
 
