@@ -1935,7 +1935,9 @@ function get_free_consulting_btn_shortcode($atts) {
                                 <option value="Graphics Designing ">Graphics Designing </option>
                             </select>
                         </div>
-                        <button type="submit" class="button primary">Submit</button>
+                        <div class="mx-auto text-center">
+                            <button type="submit" class="button primary">Submit</button>
+                        </div>  
                     </form>
                 </div>
                 
@@ -2115,7 +2117,9 @@ function get_download_brochure_btn_shortcode($atts) {
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <button type="submit" class="button primary">Download</button>
+                        <div class="mx-auto text-center">
+                            <button type="submit" class="button primary">Download</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -2297,7 +2301,9 @@ function get_apply_for_course_btn_shortcode($atts) {
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <button type="submit" class="button primary">Apply</button>
+                        <div class="mx-auto text-center">
+                            <button type="submit" class="button primary">Apply</button>
+                        </div>
                     </form>
                 </div>
             </div>
