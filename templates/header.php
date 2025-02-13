@@ -20,6 +20,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo esc_url( get_template_directory_uri() .'/assets/favicon/favicon-32x32.png' ); ?>">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo esc_url( get_template_directory_uri() .'/assets/favicon/favicon-16x16.png' ); ?>">
     <link rel="manifest" href="<?php echo esc_url( get_template_directory_uri() .'/assets/favicon/site.webmanifest' ); ?>">
+
+    <link rel="canonical" href="<?php echo get_permalink(); ?>" />
     <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
