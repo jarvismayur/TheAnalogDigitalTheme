@@ -1821,7 +1821,7 @@ add_action('save_post', 'save_toc_meta_box');
 
 function fix_home_page_wp_title($title) {
     if (is_front_page() || is_home()) {
-        return "Home | Analog Digital ";
+        return "Home | Analog Digital - The Digital People  ";
     }
     return $title;
 }
