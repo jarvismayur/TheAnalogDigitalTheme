@@ -101,7 +101,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                                 <!-- CTA Button for Mobile -->
                                 <div class="nav-item d-lg-none text-center mt-3">
-                                    <button onclick="window.location.href='<?php echo esc_url(get_theme_mod('cta_button_url', '#')); ?>" class=" button primary">
+                                    <button onclick="window.location.href='<?php echo esc_url(get_theme_mod('cta_button_url', '#')); ?>'" class=" button primary">
                                         <?php echo esc_html(get_theme_mod('cta_button_text', __('Call to Action', 'textdomain'))); ?>
                             </button>
                                 </div>
@@ -116,7 +116,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <!-- CTA Button -->
                 <div class="nav-item d-none d-lg-block text-center ">
-            <button onclick="window.location.href='<?php echo esc_url(get_theme_mod('cta_button_url', '#')); ?>" class="button primary">
+            <button onclick="window.location.href='<?php echo esc_url(get_theme_mod('cta_button_url', '#')); ?>'" class="button primary">
                 <?php echo esc_html(get_theme_mod('cta_button_text', __('Call to Action', 'textdomain'))); ?>
                             </button>
         </div>
