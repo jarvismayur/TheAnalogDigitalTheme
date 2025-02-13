@@ -116,7 +116,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <!-- CTA Button -->
                 <div class="nav-item d-none d-lg-block text-center ">
-            <a href="<?php echo esc_url(get_theme_mod('cta_button_url', '#')); ?>" class="button  text-white text-regular-bold border-25 bg-color-secordary-light pl-2 pr-2">
+            <a href="<?php echo esc_url(get_theme_mod('cta_button_url', '#')); ?>" class="btn text-white text-regular-bold border-25 bg-color-secordary-light pl-2 pr-2 w-100">
                 <?php echo esc_html(get_theme_mod('cta_button_text', __('Call to Action', 'textdomain'))); ?>
             </a>
         </div>
