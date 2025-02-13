@@ -6,7 +6,10 @@
         </tr>
         <tr>
             <th><label for="testimonial_rating">Rating</label></th>
-            <td><input type="number" name="testimonial_rating" id="testimonial_rating" value="<?php echo isset($testimonial->rating) ? esc_attr($testimonial->rating) : ''; ?>" min="1" max="5" required></td>
+            <td>
+                <input type="number" name="testimonial_rating" id="testimonial_rating" value="<?php echo isset($testimonial->rating) ? esc_attr($testimonial->rating) : ''; ?>" min="1" max="5" required>
+                <p class="description">Enter a rating between 1 and 5.</p>
+            </td>
         </tr>
         <tr>
             <th><label for="testimonial_description">Description</label></th>
@@ -21,7 +24,14 @@
                     <img src="<?php echo esc_url($testimonial->image); ?>" alt="Current Image" width="100"><br>
                 <?php endif; ?>
                 <input type="file" name="testimonial_image" id="testimonial_image">
-                <p class="description">Upload a new image to replace the existing one, or leave blank to retain the current image.</p>
+                <p class="description">Upload a new image to replace the existing one, or leave blank to keep the current image.</p>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="testimonial_page_id">Page ID</label></th>
+            <td>
+                <input type="number" name="testimonial_page_id" id="testimonial_page_id" value="<?php echo isset($testimonial->page_id) ? esc_attr($testimonial->page_id) : ''; ?>">
+                <p class="description">Enter the Page ID if this testimonial is linked to a specific page.</p>
             </td>
         </tr>
         <tr>
@@ -35,8 +45,11 @@
             </td>
         </tr>
     </table>
+    
     <input type="hidden" name="testimonial_id" value="<?php echo isset($testimonial->id) ? esc_attr($testimonial->id) : ''; ?>">
+    
     <p class="submit">
         <input type="submit" name="save_testimonial" id="save_testimonial" class="button button-primary" value="Save Changes">
     </p>
 </form>
+
