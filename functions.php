@@ -2438,13 +2438,13 @@ function display_course_application_requests() {
 
 
 function custom_rewrite_rules() {
-    // Rewrite all blog posts to be under /blogs/
-    add_rewrite_rule('^blogs/([^/]*)/?', 'index.php?post_type=post&name=$matches[1]', 'top');
+    // Force all blog posts to be under /blogs/
+    add_rewrite_rule('^blogs/([^/]*)/?', 'index.php?name=$matches[1]', 'top');
 }
 add_action('init', 'custom_rewrite_rules');
 
 function custom_post_link($permalink, $post) {
-    // Ensure all posts are prefixed with /blogs/
+    // Ensure only posts (not pages or CPTs) are prefixed with /blogs/
     if ($post->post_type === 'post') {
         return home_url('/blogs/' . $post->post_name . '/');
     }
@@ -2455,6 +2455,5 @@ add_filter('post_link', 'custom_post_link', 10, 2);
 function update_flush_rewrite_rules() {
     flush_rewrite_rules();
 }
-register_activation_hook(__FILE__, 'update_flush_rewrite_rules');
-register_deactivation_hook(__FILE__, 'update_flush_rewrite_rules');
+add_action('after_switch_theme', 'update_flush_rewrite_rules');
 
