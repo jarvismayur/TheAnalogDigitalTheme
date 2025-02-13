@@ -514,34 +514,25 @@ function create_testimonial_table() {
     $table_name = $wpdb->prefix . 'testimonials'; // Table name with WordPress prefix
     $charset_collate = $wpdb->get_charset_collate();
 
-    // SQL to create the testimonials table
+    // SQL to create the testimonials table with page_id
     $sql = "CREATE TABLE IF NOT EXISTS $table_name (
         id INT(11) NOT NULL AUTO_INCREMENT,
         name VARCHAR(255) NOT NULL,
         rating TINYINT(1) NOT NULL CHECK (rating BETWEEN 1 AND 5), -- Ensure rating is between 1 and 5
         description TEXT NOT NULL,
         status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
+        page_id INT(11) DEFAULT NULL, -- Allow testimonials to be assigned to specific pages
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     ) $charset_collate;";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
-
-    // Optional: Add initial sample data (remove if not needed)
-    $existing_data = $wpdb->get_var("SELECT COUNT(*) FROM $table_name");
-    if ($existing_data === null || $existing_data == 0) {
-        $wpdb->insert($table_name, [
-            'name' => 'John Doe',
-            'rating' => 5,
-            'description' => 'This is a sample testimonial.',
-            'status' => 'approved',
-        ]);
-    }
 }
 
 // Hook to run this function when the theme is activated
 add_action('after_switch_theme', 'create_testimonial_table');
+
 
 
 
@@ -566,6 +557,8 @@ function testimonial_submission_form() {
                 <textarea id="testimonial_description" name="testimonial_description" class="form-control" required></textarea>
             </div>
 
+            <input type="hidden" name="testimonial_page_id" value="<?php echo get_the_ID(); ?>"> <!-- Hidden page_id field -->
+
             <button type="submit" name="submit_testimonial" class="btn btn-primary">Submit Testimonial</button>
         </form>
 
@@ -575,6 +568,7 @@ function testimonial_submission_form() {
             $name = sanitize_text_field($_POST['testimonial_name']);
             $rating = intval($_POST['testimonial_rating']);
             $description = sanitize_textarea_field($_POST['testimonial_description']);
+            $page_id = intval($_POST['testimonial_page_id']); // Capture the page ID
             $status = 'pending'; // Default status
 
             global $wpdb;
@@ -584,7 +578,8 @@ function testimonial_submission_form() {
                     'name' => $name,
                     'rating' => $rating,
                     'description' => $description,
-                    'status' => $status
+                    'status' => $status,
+                    'page_id' => $page_id
                 )
             );
 
@@ -596,6 +591,7 @@ function testimonial_submission_form() {
     return ob_get_clean();
 }
 add_shortcode('testimonial_form', 'testimonial_submission_form');
+
 
 
 
@@ -622,30 +618,33 @@ function testimonial_admin_page() {
     $table_name = $wpdb->prefix . 'testimonials';
 
     // Handle Add/Edit Form Submission
-    if (isset($_POST['save_testimonial'])) {
+    if (isset($_POST['save_testimonial']) && check_admin_referer('save_testimonial_action', 'save_testimonial_nonce')) {
         $name = sanitize_text_field($_POST['testimonial_name']);
         $rating = intval($_POST['testimonial_rating']);
         $description = sanitize_textarea_field($_POST['testimonial_description']);
         $status = sanitize_text_field($_POST['testimonial_status']);
+        $page_id = intval($_POST['testimonial_page_id']); // Capture Page ID
         $image_url = '';
 
         // Fetch existing image if editing
-        if (isset($_POST['testimonial_id']) && $_POST['testimonial_id']) {
+        if (!empty($_POST['testimonial_id'])) {
             $testimonial = $wpdb->get_row("SELECT * FROM $table_name WHERE id = " . intval($_POST['testimonial_id']));
-            $image_url = $testimonial->image;
+            if ($testimonial) {
+                $image_url = $testimonial->image;
+            }
         }
 
-        // Handle image upload
-        if (isset($_FILES['testimonial_image']) && $_FILES['testimonial_image']['error'] === 0) {
-            $upload = wp_upload_bits($_FILES['testimonial_image']['name'], null, file_get_contents($_FILES['testimonial_image']['tmp_name']));
-            if (!$upload['error']) {
-                $image_url = $upload['url'];
+        // Handle Image Upload
+        if (!empty($_FILES['testimonial_image']) && $_FILES['testimonial_image']['error'] === 0) {
+            $uploaded_file = wp_handle_upload($_FILES['testimonial_image'], ['test_form' => false]);
+            if (!isset($uploaded_file['error'])) {
+                $image_url = $uploaded_file['url'];
             }
         }
 
         // Insert or Update Testimonial
-        if (isset($_POST['testimonial_id']) && $_POST['testimonial_id']) {
-            // Update testimonial
+        if (!empty($_POST['testimonial_id'])) {
+            // Update
             $wpdb->update(
                 $table_name,
                 [
@@ -653,12 +652,13 @@ function testimonial_admin_page() {
                     'rating' => $rating,
                     'description' => $description,
                     'status' => $status,
+                    'page_id' => $page_id,
                     'image' => $image_url
                 ],
                 ['id' => intval($_POST['testimonial_id'])]
             );
         } else {
-            // Insert new testimonial
+            // Insert New Testimonial
             $wpdb->insert(
                 $table_name,
                 [
@@ -666,6 +666,7 @@ function testimonial_admin_page() {
                     'rating' => $rating,
                     'description' => $description,
                     'status' => $status,
+                    'page_id' => $page_id,
                     'image' => $image_url
                 ]
             );
@@ -673,23 +674,15 @@ function testimonial_admin_page() {
     }
 
     // Handle Approve/Reject Actions
-    if (isset($_GET['action']) && isset($_GET['id'])) {
+    if (isset($_GET['action'], $_GET['id'])) {
         $action = sanitize_text_field($_GET['action']);
         $testimonial_id = intval($_GET['id']);
 
         if ($action === 'approve') {
-            $wpdb->update(
-                $table_name,
-                ['status' => 'approved'], // Set status to "approved"
-                ['id' => $testimonial_id]
-            );
+            $wpdb->update($table_name, ['status' => 'approved'], ['id' => $testimonial_id]);
             echo '<div class="notice notice-success is-dismissible"><p>Testimonial approved successfully.</p></div>';
         } elseif ($action === 'reject') {
-            $wpdb->update(
-                $table_name,
-                ['status' => 'rejected'], // Set status to "rejected"
-                ['id' => $testimonial_id]
-            );
+            $wpdb->update($table_name, ['status' => 'rejected'], ['id' => $testimonial_id]);
             echo '<div class="notice notice-warning is-dismissible"><p>Testimonial rejected successfully.</p></div>';
         }
     }
@@ -699,17 +692,16 @@ function testimonial_admin_page() {
 
     echo '<div class="wrap"><h1>Manage Testimonials</h1>';
 
-    // If editing a testimonial
-    if (isset($_GET['action']) && $_GET['action'] === 'edit' && isset($_GET['id'])) {
+    // If Editing
+    if (!empty($_GET['action']) && $_GET['action'] === 'edit' && !empty($_GET['id'])) {
         $testimonial = $wpdb->get_row("SELECT * FROM $table_name WHERE id = " . intval($_GET['id']));
-        include 'templates/testimonial_edit_form.php'; // Include the form
+        include 'templates/testimonial_edit_form.php';
     } else {
-        // Display blank form for new testimonial
         echo '<h2>Add New Testimonial</h2>';
-        include 'templates/testimonial_edit_form.php'; // Form will be blank when no testimonial is loaded
+        include 'templates/testimonial_edit_form.php'; // Show empty form for new testimonials
     }
 
-    // Display list of testimonials
+    // Display List of Testimonials
     echo '<h2>Existing Testimonials</h2>';
     include 'templates/testimonial_list.php';
 
