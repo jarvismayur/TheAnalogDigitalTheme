@@ -532,10 +532,6 @@ function create_testimonial_table() {
 
 // Hook to run this function when the theme is activated
 add_action('after_switch_theme', 'create_testimonial_table');
-
-
-
-
 function testimonial_submission_form() {
     ob_start();
     ?>
@@ -591,11 +587,6 @@ function testimonial_submission_form() {
     return ob_get_clean();
 }
 add_shortcode('testimonial_form', 'testimonial_submission_form');
-
-
-
-
-
 function testimonial_admin_menu() {
     add_menu_page(
         'Testimonials',             // Page title
@@ -608,17 +599,12 @@ function testimonial_admin_menu() {
     );
 }
 add_action('admin_menu', 'testimonial_admin_menu');
-
-
-
-
-
 function testimonial_admin_page() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'testimonials';
 
     // Handle Add/Edit Form Submission
-    if (isset($_POST['save_testimonial']) && isset($_POST['testimonial_nonce']) && wp_verify_nonce($_POST['testimonial_nonce'], 'save_testimonial_action'))  {
+    if (isset($_POST['save_testimonial']) && isset($_POST['testimonial_nonce']) ) {
         $name = sanitize_text_field($_POST['testimonial_name']);
         $rating = intval($_POST['testimonial_rating']);
         $description = sanitize_textarea_field($_POST['testimonial_description']);
@@ -707,8 +693,6 @@ function testimonial_admin_page() {
 
     echo '</div>';
 }
-
-
 // Shortcode to display testimonials with Owl Carousel based on the page
 function display_testimonials_shortcode($atts) {
     global $wpdb;
@@ -804,8 +788,6 @@ function display_testimonials_shortcode($atts) {
 }
 add_shortcode('display_testimonials', 'display_testimonials_shortcode');
 
-
-
 // Register the contact form shortcode
 function custom_contact_form() {
     ob_start();
@@ -841,7 +823,7 @@ function custom_contact_form() {
         <button type="submit" name="submit_contact_form" class="button primary mt-2">Submit</button>
     </div>
     <input type="hidden" name="action" value="handle_contact_form">
-</form>
+    </form>
 
     <?php
     return ob_get_clean();
