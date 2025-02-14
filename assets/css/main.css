@@ -2670,3 +2670,39 @@ img{
     display: block !important; /* Force show if JS removes visibility */
 }
 
+
+
+.testimonial-carousel .item {
+    display: flex;
+    justify-content: center;
+}
+
+.testimonial-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 250px; /* Set a fixed height for all cards */
+    max-height: 250px;
+    overflow: hidden;
+}
+
+.testimonial-card .card-text {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Limit to 4 lines */
+    -webkit-box-orient: vertical;
+}
+
+.testimonial-card .star-rating {
+    min-height: 23px;
+}
+
+.circular-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
