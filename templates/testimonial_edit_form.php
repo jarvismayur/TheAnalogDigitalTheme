@@ -54,6 +54,8 @@
             </td>
         </tr>
     </table>
+
+    <?php wp_nonce_field('save_testimonial', 'testimonial_nonce'); ?>
     
     <input type="hidden" name="testimonial_id" value="<?php echo isset($testimonial->id) ? esc_attr($testimonial->id) : ''; ?>">
     
