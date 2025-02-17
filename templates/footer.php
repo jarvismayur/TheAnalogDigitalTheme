@@ -253,6 +253,7 @@ hljs.initHighlightingOnLoad();
 
 
 
+<?php wp_footer(); ?>
 
 
 </body>
