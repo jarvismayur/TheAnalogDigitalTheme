@@ -2056,7 +2056,7 @@ function get_download_brochure_btn_shortcode($atts) {
         array(
             'courses' => 'Course 1, Course 2, Course 3', // default courses
             'form_title' => 'Download Broucher Form',
-            'link' => 'https://theanalogdigital.in/wp-content/uploads/2025/02/Analog-Digital_Digital-Marketing-Brochure.pdf'
+            'link' => 'wp-content/uploads/2025/02/Analog-Digital_Digital-Marketing-Brochure.pdf'
         ), $atts, 'course_admission_form');
     
     // Split courses into an array
