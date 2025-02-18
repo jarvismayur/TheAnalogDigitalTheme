@@ -2055,12 +2055,14 @@ function get_download_brochure_btn_shortcode($atts) {
     $atts = shortcode_atts(
         array(
             'courses' => 'Course 1, Course 2, Course 3', // default courses
-            'form_title' => 'Download Broucher Form'
+            'form_title' => 'Download Broucher Form',
+            'link' => 'https://theanalogdigital.in/wp-content/uploads/2025/02/Analog-Digital_Digital-Marketing-Brochure.pdf'
         ), $atts, 'course_admission_form');
     
     // Split courses into an array
     $courses = explode(',', $atts['courses']);
     $form_title = $atts['form_title'];
+    $link = $atts['link'];
     ob_start();
     ?>
     <!-- Button to trigger the modal -->
@@ -2169,7 +2171,7 @@ function get_download_brochure_btn_shortcode($atts) {
                 console.log("Server Response:", data);
                 alert("Form submitted successfully! Your brochure will start downloading.");
                 document.getElementById('brochureForm').reset();
-                window.location.href = "<?php echo site_url('/wp-content/uploads/brochure.pdf'); ?>"; // Change to actual brochure URL
+                window.location.href = "<?php echo site_url($link); ?>"; // Change to actual brochure URL
             })
             .catch(error => console.error("Error:", error));
         });
